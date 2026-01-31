@@ -45,6 +45,9 @@ export async function generateMetadata({
       description: t('description'),
       siteName: "OKdjw",
     },
+    icons: {
+      icon: '/icon.svg',
+    },
     twitter: {
       card: "summary_large_image",
       title: t('title'),
