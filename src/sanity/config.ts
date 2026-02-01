@@ -12,10 +12,4 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
-  // Ensure the studio works correctly in different environments
-  studio: {
-    components: {
-      // Custom components if needed
-    }
-  }
 })

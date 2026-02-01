@@ -43,22 +43,6 @@ function Model() {
 }
 
 export const RobotBackground = () => {
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  // Don't render anything on mobile to save bandwidth and improve speed
-  // Return null or a simple placeholder while determining status
-  if (isMobile === null) return <div className="absolute inset-0 bg-black" />;
-  if (isMobile) return <div className="absolute inset-0 bg-black" />;
-
   return (
     <div className="absolute inset-0 z-0">
       <Canvas
@@ -69,7 +53,7 @@ export const RobotBackground = () => {
           alpha: true,
           powerPreference: "high-performance"
         }}
-        dpr={[1, 2]} // Optimize for high-DPI screens but cap at 2 for performance
+        dpr={[1, 2]}
       >
         <Suspense fallback={null}>
           <Environment preset="city" />
@@ -103,8 +87,6 @@ export const RobotBackground = () => {
           />
         </Suspense>
       </Canvas>
-      
-      <Loader />
       
       {/* Dark overlay to ensure text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black/80 pointer-events-none" />
