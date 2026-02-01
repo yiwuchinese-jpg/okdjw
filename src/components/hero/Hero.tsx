@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform, Variants, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { FluidBackground } from "./FluidBackground";
+import { RobotBackground } from "./RobotBackground";
 import { LocaleSwitcher } from "../ui/LocaleSwitcher";
 import { useEffect, useState } from "react";
 
@@ -137,7 +137,7 @@ export const Hero = () => {
 
   return (
     <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black">
-      <FluidBackground />
+      <RobotBackground />
       <LocaleSwitcher />
       
       <motion.div 
@@ -340,7 +340,7 @@ export const Hero = () => {
                 className="relative"
               >
                 <motion.h1 
-                  className="text-8xl md:text-[12rem] font-black tracking-tighter text-white leading-[0.8] relative"
+                  className="text-8xl md:text-[12rem] font-black tracking-tighter text-white leading-[0.8] relative drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]"
                 >
                   OK<span className="text-primary italic relative inline-block drop-shadow-[0_0_40px_rgba(0,240,255,0.4)]">
                     djw
@@ -356,7 +356,7 @@ export const Hero = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="text-xl md:text-3xl font-light tracking-tight text-foreground/40 mt-8"
+                  className="text-xl md:text-3xl font-light tracking-tight text-white/80 mt-8 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
                 >
                   {t("okdjw")}
                 </motion.div>
@@ -369,9 +369,9 @@ export const Hero = () => {
           variants={itemVariants}
           className={`flex flex-col items-center gap-10 transition-opacity duration-1000 ${phase === "typing" ? "opacity-0 pointer-events-none" : "opacity-100"}`}
         >
-          <p className="max-w-2xl text-lg md:text-xl text-foreground/60 font-medium leading-relaxed">
+          <p className="max-w-2xl text-lg md:text-xl text-white font-medium leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
             {t("description")}
-            <span className="block text-primary/40 font-mono text-[10px] mt-4 uppercase tracking-[0.6em] font-bold">
+            <span className="block text-primary font-mono text-[10px] mt-4 uppercase tracking-[0.6em] font-bold">
               {t("slogan")}
             </span>
           </p>
