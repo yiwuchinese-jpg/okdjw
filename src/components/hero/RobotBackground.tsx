@@ -43,6 +43,22 @@ function Model() {
 }
 
 export const RobotBackground = () => {
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Don't render anything on mobile to save bandwidth and improve speed
+  // Return null or a simple placeholder while determining status
+  if (isMobile === null) return <div className="absolute inset-0 bg-black" />;
+  if (isMobile) return <div className="absolute inset-0 bg-black" />;
+
   return (
     <div className="absolute inset-0 z-0">
       <Canvas
