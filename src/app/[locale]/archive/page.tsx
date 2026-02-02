@@ -11,22 +11,38 @@ export default async function ArchivePage({
 }) {
   const { locale } = await params;
   const t = await getTranslations("Archive");
-  
-  const resources = getAllContent("resources", locale);
-  const articles = getAllContent("blog", locale);
+
+  // Fetch Local Markdown Content
+  const localResources = getAllContent("resources", locale);
+  const localArticles = getAllContent("blog", locale);
+
+  // Fetch Sanity CMS Content
+  let sanityArticles: any[] = [];
+  let sanityResources: any[] = [];
+  try {
+    const { getSanityArticles, getSanityResources } = await import("@/sanity/lib/queries");
+    sanityArticles = await getSanityArticles(locale);
+    sanityResources = await getSanityResources(locale);
+  } catch (e) {
+    console.error("Failed to fetch Sanity content for archive:", e);
+  }
+
+  // Merge them (Sanity content first or sorted by date)
+  const resources = [...sanityResources, ...localResources].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const articles = [...sanityArticles, ...localArticles].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
     <main className="min-h-screen bg-black pt-40 pb-32">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="mb-24">
-          <Link 
+          <Link
             href="/"
             className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 hover:text-primary transition-colors mb-12"
           >
             <ArrowLeft className="w-4 h-4" /> {t("backHome")}
           </Link>
-          
+
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
             <div>
               <span className="text-primary font-mono text-xs font-bold tracking-[0.5em] uppercase mb-4 block">

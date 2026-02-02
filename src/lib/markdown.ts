@@ -15,6 +15,7 @@ export interface ContentData {
   image?: string;
   description: string;
   contentHtml?: string;
+  type?: "blog" | "tutorials" | "projects" | "resources";
 }
 
 export function getAllContent(type: "blog" | "tutorials" | "projects" | "resources", locale: string): ContentData[] {
@@ -33,6 +34,7 @@ export function getAllContent(type: "blog" | "tutorials" | "projects" | "resourc
 
       return {
         slug,
+        type,
         ...(matterResult.data as { title: string; date: string; tags: string[]; category: string; image?: string; description: string }),
       };
     });
@@ -53,6 +55,7 @@ export async function getContentData(type: "blog" | "tutorials" | "projects" | "
   return {
     slug,
     contentHtml,
+    type,
     ...(matterResult.data as { title: string; date: string; tags: string[]; category: string; image?: string; description: string }),
   };
 }

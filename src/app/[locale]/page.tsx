@@ -7,15 +7,23 @@ import { getAllContent } from "@/lib/markdown";
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+
+  // Fetch both tutorials and blog articles
   const tutorials = getAllContent("tutorials", locale);
-  
+  const blogArticles = getAllContent("blog", locale);
+
+  // Merge and sort them by date to show the latest 3 on the homepage
+  const allContent = [...tutorials, ...blogArticles]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
+
   return (
     <main className="min-h-screen">
       <Hero />
       <About />
       <Stack />
       <Projects />
-      <Content tutorials={tutorials} />
+      <Content tutorials={allContent} />
     </main>
   );
 }
