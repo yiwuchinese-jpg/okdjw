@@ -26,7 +26,7 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'Metadata' });
- 
+
   return {
     metadataBase: new URL('https://okdjw.com'),
     title: {
@@ -53,6 +53,13 @@ export async function generateMetadata({
       title: t('title'),
       description: t('description'),
     },
+    alternates: {
+      canonical: `https://okdjw.com/${locale}`,
+      languages: {
+        'zh-CN': 'https://okdjw.com/zh',
+        'en-US': 'https://okdjw.com/en',
+      },
+    },
     robots: {
       index: true,
       follow: true,
@@ -75,16 +82,16 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  
+
   // Ensure that the incoming `locale` is valid
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }
- 
+
   // Providing all messages to the client
   // side is the easiest way to get started
   const messages = await getMessages();
- 
+
   return (
     <html lang={locale}>
       <body

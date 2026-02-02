@@ -1,4 +1,5 @@
 import { getContentData } from "@/lib/markdown";
+import { getSanityContentData } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
@@ -12,7 +13,24 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params;
   try {
-    const data = await getContentData("resources", slug, locale);
+    // 1. Try Sanity first
+    const sanityData = await getSanityContentData('resource', slug, locale); // Changed 'post' to 'resource'
+    if (sanityData) {
+      return {
+        title: sanityData.title,
+        description: sanityData.description,
+        openGraph: {
+          title: sanityData.title,
+          description: sanityData.description,
+          type: "article",
+          publishedTime: sanityData.date, // Added publishedTime
+          images: sanityData.image ? [{ url: sanityData.image }] : [],
+        },
+      };
+    }
+
+    // 2. Fallback to Markdown
+    const data = await getContentData("resources", slug, locale); // Changed 'blog' to 'resources'
     return {
       title: data.title,
       description: data.description,
@@ -35,14 +53,14 @@ export default async function ResourceDetailPage({
 }) {
   const { locale, slug } = await params;
   const t = await getTranslations("Archive");
-  
+
   try {
     const data = await getContentData("resources", slug, locale);
 
     return (
       <main className="min-h-screen bg-black pt-40 pb-32">
         <div className="container mx-auto px-4 max-w-4xl">
-          <Link 
+          <Link
             href="/archive#resources"
             className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 hover:text-primary transition-colors mb-16"
           >
@@ -60,7 +78,7 @@ export default async function ResourceDetailPage({
                 <Calendar className="w-3 h-3" /> {data.date}
               </span>
             </div>
-            
+
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
               <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-tight">
                 {data.title}
@@ -69,13 +87,13 @@ export default async function ResourceDetailPage({
                 <Download className="w-5 h-5" /> Download
               </button>
             </div>
-            
+
             <p className="text-xl text-white/40 leading-relaxed font-medium italic border-l-4 border-primary/30 pl-8 py-2">
               {data.description}
             </p>
           </header>
 
-          <div 
+          <div
             className="prose prose-invert prose-primary max-w-none 
               prose-headings:font-black prose-headings:tracking-tighter prose-headings:uppercase
               prose-p:text-white/60 prose-p:leading-relaxed prose-p:text-lg
