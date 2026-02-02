@@ -18,6 +18,21 @@ export default defineType({
       options: {
         source: 'title',
         maxLength: 96,
+        isUnique: (slug, context) => {
+          const { getClient, document } = context;
+          if (!document) return Promise.resolve(true);
+
+          const client = getClient({ apiVersion: '2024-02-01' });
+          const id = document._id.replace(/^drafts\./, '');
+          // @ts-ignore
+          const locale = document.locale;
+          const type = document._type;
+
+          const query = `*[_type == $type && slug.current == $slug && locale == $locale && _id != $id && !(_id in ["drafts." + $id])]`;
+          const params = { type, slug, locale, id };
+
+          return client.fetch(query, params).then((res: any[]) => res.length === 0);
+        },
       },
       validation: (Rule) => Rule.required(),
     }),
