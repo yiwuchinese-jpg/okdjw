@@ -1,113 +1,152 @@
 {
   "Hero": {
-    "welcome": "Welcome",
-    "okdjw": "It's OK, asking Du Jingwei.",
-    "description": "IFAN Marketing Manager | Gen Z Creator from Yiwu.",
-    "slogan": "Marketing Mind. Developer Hands. Design Soul.",
-    "viewProjects": "View Projects",
-    "contactMe": "Contact Me",
-    "scroll": "Scroll",
-    "segments": ["It's OK,", "asking", "Du Jing Wei."]
+    "welcome": "BIENVENIDO",
+    "okdjw": "Pregunta a Jingwei, es de confianza.",
+    "description": "Gerente de Marketing en IFAN | Emprendedor en Yiwu",
+    "slogan": "Mentalidad de Marketing · Ejecución Técnica · Alma de Diseño",
+    "viewProjects": "Ver Proyectos",
+    "contactMe": "Contáctame",
+    "scroll": "Desliza abajo",
+    "segments": [
+      "Si tienes dudas,",
+      "pregunta a",
+      "Jingwei Du."
+    ]
   },
   "About": {
-    "title": "Born in the Heart of Global Commerce.",
-    "origin": "Born in Yiwu, China — the center of the world's supermarket. Growing up immersed in the flow of commerce has given me a natural sensitivity to traffic and transactions.",
-    "career": "I don't just understand foreign trade; I understand how to leverage technology to move markets. Currently Marketing Manager at IFAN, dedicated to building omni-channel marketing systems driven by data.",
-    "nameStory": "Justin / Du Jingwei. Keep it Short, Keep it OK. \"It's OK, asking Du Jingwei.\" Reliable and straightforward — that's my style.",
-    "info": "EST. 2000 / YIWU",
+    "title": "Nacido en el Centro del Comercio Global",
+    "origin": "Nacido en Yiwu, China, el supermercado del mundo. Crecer viendo el flujo del comercio global me dio una sensibilidad natural para el tráfico y las transacciones.",
+    "career": "No solo entiendo el comercio exterior; entiendo cómo usar la tecnología para impulsar el mercado. Como Gerente de Marketing en IFAN, construyo sistemas omnicanal para el crecimiento digital.",
+    "nameStory": "Justin / Du Jingwei. Manténlo corto, manténlo OK. \"Está bien, pregunta a Du Jingwei.\" Directo y simple, ese es mi estilo.",
+    "info": "Año 2000 / Yiwu",
     "tags": {
-      "origin": "Tag 01: The Origin",
-      "career": "Tag 02: The Career",
-      "name": "Tag 03: The Name"
+      "origin": "Tag 01: Origen",
+      "career": "Tag 02: Carrera",
+      "name": "Tag 03: Nombre"
     }
   },
   "Stack": {
-    "title": "SKILLS & TOOLS",
-    "subtitle": "Capabilities",
-    "expertise": "Expertise",
+    "title": "HABILIDADES Y HERRAMIENTAS",
+    "subtitle": "Capacidades",
+    "expertise": "Experiencia",
     "skills": {
       "growth": {
-        "title": "Brand Strategy",
-        "description": "Building brand walls, not just selling products.",
-        "tags": ["Strategy", "Ads", "SEO"]
+        "title": "Estrategia de Marca",
+        "description": "Construyendo barreras de marca, no solo vendiendo productos.",
+        "tags": [
+          "Estrategia",
+          "Anuncios",
+          "SEO"
+        ]
       },
       "dev": {
-        "title": "Full-stack Dev",
-        "description": "Next.js, React, and high-performance web apps.",
-        "tags": ["Next.js", "React", "Node.js"]
+        "title": "Desarrollo Full-stack",
+        "description": "Construyendo apps web de alto rendimiento con Next.js.",
+        "tags": [
+          "Next.js",
+          "React",
+          "Node.js"
+        ]
       },
       "ai": {
-        "title": "AI Automation",
-        "description": "Leveraging AI to scale business operations.",
-        "tags": ["GPT", "Workflow", "Efficiency"]
+        "title": "Automatización IA",
+        "description": "Escalando operaciones comerciales con IA para mayor eficiencia.",
+        "tags": [
+          "GPT",
+          "Workflows",
+          "Eficiencia"
+        ]
       },
       "design": {
-        "title": "UI/UX Design",
-        "description": "Design that converts, starting with aesthetics.",
-        "tags": ["Figma", "Motion", "UX"]
+        "title": "Diseño UI/UX",
+        "description": "Empieza por la estética, termina con la conversión.",
+        "tags": [
+          "Figma",
+          "Animación",
+          "UX"
+        ]
       },
       "marketing": {
-        "title": "Global Marketing",
-        "description": "Yiwu-born perspective for global growth.",
-        "tags": ["B2B", "Sourcing", "Global"]
+        "title": "Marketing Global",
+        "description": "Visión de crecimiento global desde Yiwu al mundo.",
+        "tags": [
+          "B2B",
+          "Sourcing",
+          "Global"
+        ]
       },
       "analytics": {
-        "title": "Data Analytics",
-        "description": "Turning raw data into actionable insights.",
-        "tags": ["Metrics", "Growth", "BI"]
+        "title": "Análisis de Datos",
+        "description": "Convirtiendo datos brutos en insights de negocio accionables.",
+        "tags": [
+          "Métricas",
+          "Crecimiento",
+          "BI"
+        ]
       }
     }
   },
   "Projects": {
-    "title": "SELECTED WORKS",
-    "subtitle": "Case Studies",
-    "scroll": "Scroll to explore",
-    "viewLive": "View Live",
+    "title": "TRABAJOS SELECCIONADOS",
+    "subtitle": "Casos de Estudio",
+    "scroll": "Desliza para explorar",
+    "viewLive": "Ver en vivo",
     "items": {
       "chineseyiwu": {
         "title": "chineseyiwu.com",
-        "description": "A sourcing platform for Yiwu products built for my girlfriend. End-to-end digital sourcing display.",
-        "tags": ["Love & Business", "Sourcing", "B2B"]
+        "description": "Plataforma de sourcing en Yiwu. Desde selección de productos hasta exportación.",
+        "tags": [
+          "Amor y Negocios",
+          "Sourcing",
+          "B2B"
+        ]
       },
       "buydiscoball": {
         "title": "buydiscoball.com",
-        "description": "Helping a friend's factory transform. A B2B lead generation machine for the Disco Ball niche.",
-        "tags": ["Factory Transformation", "Niche Market"]
+        "description": "Ayudando a fábricas a digitalizarse en nichos verticales como Disco Balls.",
+        "tags": [
+          "Transformación",
+          "Vertical"
+        ]
       },
       "ifan": {
         "title": "ifanholding.com",
-        "description": "Built an omni-channel marketing system with AI automation to boost global lead generation.",
-        "tags": ["Corporate", "Strategy", "Automation"]
+        "description": "Sistemas de marketing omnicanal y flujos de automatización IA.",
+        "tags": [
+          "Corporativo",
+          "Estrategia",
+          "Auto"
+        ]
       }
     }
   },
   "Content": {
-    "title": "TUTORIALS & INSIGHTS",
-    "subtitle": "Knowledge Hub",
-    "explore": "Explore Full Library",
-    "readMore": "Read Article",
+    "title": "TUTORIALES E INSIGHTS",
+    "subtitle": "Hub de Conocimiento",
+    "explore": "Explorar todo",
+    "readMore": "Leer más",
     "contact": {
-      "title": "LET'S WORK TOGETHER",
-      "subtitle": "Made with ❤️ in Yiwu."
+      "title": "TRABAJEMOS JUNTOS",
+      "subtitle": "Hecho con ❤️ en Yiwu."
     }
   },
   "Metadata": {
-    "title": "Justin Du | Growth Hacker & Full-stack Developer",
-    "description": "Marketing Mind. Developer Hands. Design Soul. Born in Yiwu, Built for Global."
+    "title": "Justin Du | Growth Hacker & Desarrollador Full-stack",
+    "description": "Mente de Marketing · Ejecución Técnica · Alma de Diseño. De Yiwu al Mundo."
   },
   "Archive": {
-    "title": "RESOURCE ARCHIVE",
-    "subtitle": "Explore Full Library",
-    "resources": "Resources",
-    "articles": "Articles",
-    "all": "All",
+    "title": "ARCHIVO DE RECURSOS",
+    "subtitle": "Explorar selección",
+    "resources": "Recursos",
+    "articles": "Artículos",
+    "all": "Todo",
     "categories": {
-      "Sourcing": "Sourcing Tools",
-      "AI": "AI Automation",
-      "Guide": "Practical Guides",
+      "Sourcing": "Herramientas de Sourcing",
+      "AI": "Automatización IA",
+      "Guide": "Guías Prácticas",
       "Growth": "Growth Hacking"
     },
-    "noContent": "No content found",
-    "backHome": "Back to Home"
+    "noContent": "No se encontró contenido",
+    "backHome": "Volver al inicio"
   }
 }

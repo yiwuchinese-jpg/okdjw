@@ -7,7 +7,11 @@
     "viewProjects": "查看项目",
     "contactMe": "联系我",
     "scroll": "向下滚动",
-    "segments": ["遇事不决,", "找", "杜经纬."]
+    "segments": [
+      "遇事不决,",
+      "找",
+      "杜经纬."
+    ]
   },
   "About": {
     "title": "生于全球商业贸易的中心",
@@ -22,72 +26,107 @@
     }
   },
   "Stack": {
-    "title": "SKILLS & TOOLS",
-    "subtitle": "Capabilities",
-    "expertise": "Expertise",
+    "title": "技能与<italic>工具</italic>",
+    "subtitle": "核心能力",
+    "expertise": "专业领域",
     "skills": {
       "growth": {
         "title": "品牌策略",
         "description": "建立品牌壁垒，而不仅仅是销售产品。",
-        "tags": ["策略", "广告", "SEO"]
+        "tags": [
+          "策略",
+          "广告",
+          "SEO"
+        ]
       },
       "dev": {
         "title": "全栈开发",
         "description": "使用 Next.js, React 构建高性能 Web 应用。",
-        "tags": ["Next.js", "React", "Node.js"]
+        "tags": [
+          "Next.js",
+          "React",
+          "Node.js"
+        ]
       },
       "ai": {
         "title": "AI 自动化",
         "description": "利用 AI 规模化商业运营，提升效率。",
-        "tags": ["GPT", "工作流", "效率"]
+        "tags": [
+          "GPT",
+          "工作流",
+          "效率"
+        ]
       },
       "design": {
         "title": "UI/UX 设计",
         "description": "始于颜值，忠于转化。",
-        "tags": ["Figma", "动效", "UX"]
+        "tags": [
+          "Figma",
+          "动效",
+          "UX"
+        ]
       },
       "marketing": {
         "title": "全球营销",
         "description": "立足义乌，链接全球的增长视角。",
-        "tags": ["B2B", "采购", "全球"]
+        "tags": [
+          "B2B",
+          "采购",
+          "全球"
+        ]
       },
       "analytics": {
         "title": "数据分析",
         "description": "将原始数据转化为可落地的业务洞察。",
-        "tags": ["指标", "增长", "BI"]
+        "tags": [
+          "指标",
+          "增长",
+          "BI"
+        ]
       }
     }
   },
   "Projects": {
-    "title": "SELECTED WORKS",
-    "subtitle": "Case Studies",
-    "scroll": "Scroll to explore",
+    "title": "精选<italic>作品</italic>",
+    "subtitle": "项目案例",
+    "scroll": "滑动探索",
     "viewLive": "查看演示",
     "items": {
       "chineseyiwu": {
         "title": "chineseyiwu.com",
         "description": "为女友打造的义乌代采购平台。从选品到出口，一站式数字化展示。",
-        "tags": ["Love & Business", "采购", "B2B"]
+        "tags": [
+          "Love & Business",
+          "采购",
+          "B2B"
+        ]
       },
       "buydiscoball": {
         "title": "buydiscoball.com",
         "description": "助力朋友工厂转型。针对 Disco Ball 这一细分领域打造的 B 端询盘收割机。",
-        "tags": ["工厂转型", "垂直市场"]
+        "tags": [
+          "工厂转型",
+          "垂直市场"
+        ]
       },
       "ifan": {
         "title": "ifanholding.com",
         "description": "搭建全渠道营销体系，整合 AI 自动化流，提升海外获客效率。",
-        "tags": ["企业级", "策略", "自动化"]
+        "tags": [
+          "企业级",
+          "策略",
+          "自动化"
+        ]
       }
     }
   },
   "Content": {
-    "title": "TUTORIALS & INSIGHTS",
-    "subtitle": "Knowledge Hub",
+    "title": "教程与<italic>洞察</italic>",
+    "subtitle": "知识库",
     "explore": "探索全库",
     "readMore": "阅读文章",
     "contact": {
-      "title": "LET'S WORK TOGETHER",
+      "title": "让我们<italic>携手</italic>并进",
       "subtitle": "Made with ❤️ in Yiwu."
     }
   },
@@ -96,7 +135,7 @@
     "description": "营销思维 · 技术实现 · 设计灵魂。生于义乌，面向全球。"
   },
   "Archive": {
-    "title": "RESOURCE ARCHIVE",
+    "title": "资源归档",
     "subtitle": "探索全库",
     "resources": "资源",
     "articles": "文章",

@@ -7,7 +7,11 @@
     "viewProjects": "View Projects",
     "contactMe": "Contact Me",
     "scroll": "Scroll",
-    "segments": ["It's OK,", "asking", "Du Jing Wei."]
+    "segments": [
+      "It's OK,",
+      "asking",
+      "Du Jing Wei."
+    ]
   },
   "About": {
     "title": "Born in the Heart of Global Commerce.",
@@ -22,44 +26,68 @@
     }
   },
   "Stack": {
-    "title": "SKILLS & TOOLS",
+    "title": "SKILLS & <italic>TOOLS</italic>",
     "subtitle": "Capabilities",
     "expertise": "Expertise",
     "skills": {
       "growth": {
         "title": "Brand Strategy",
         "description": "Building brand walls, not just selling products.",
-        "tags": ["Strategy", "Ads", "SEO"]
+        "tags": [
+          "Strategy",
+          "Ads",
+          "SEO"
+        ]
       },
       "dev": {
         "title": "Full-stack Dev",
         "description": "Next.js, React, and high-performance web apps.",
-        "tags": ["Next.js", "React", "Node.js"]
+        "tags": [
+          "Next.js",
+          "React",
+          "Node.js"
+        ]
       },
       "ai": {
         "title": "AI Automation",
         "description": "Leveraging AI to scale business operations.",
-        "tags": ["GPT", "Workflow", "Efficiency"]
+        "tags": [
+          "GPT",
+          "Workflow",
+          "Efficiency"
+        ]
       },
       "design": {
         "title": "UI/UX Design",
         "description": "Design that converts, starting with aesthetics.",
-        "tags": ["Figma", "Motion", "UX"]
+        "tags": [
+          "Figma",
+          "Motion",
+          "UX"
+        ]
       },
       "marketing": {
         "title": "Global Marketing",
         "description": "Yiwu-born perspective for global growth.",
-        "tags": ["B2B", "Sourcing", "Global"]
+        "tags": [
+          "B2B",
+          "Sourcing",
+          "Global"
+        ]
       },
       "analytics": {
         "title": "Data Analytics",
         "description": "Turning raw data into actionable insights.",
-        "tags": ["Metrics", "Growth", "BI"]
+        "tags": [
+          "Metrics",
+          "Growth",
+          "BI"
+        ]
       }
     }
   },
   "Projects": {
-    "title": "SELECTED WORKS",
+    "title": "SELECTED <italic>WORKS</italic>",
     "subtitle": "Case Studies",
     "scroll": "Scroll to explore",
     "viewLive": "View Live",
@@ -67,27 +95,38 @@
       "chineseyiwu": {
         "title": "chineseyiwu.com",
         "description": "A sourcing platform for Yiwu products built for my girlfriend. End-to-end digital sourcing display.",
-        "tags": ["Love & Business", "Sourcing", "B2B"]
+        "tags": [
+          "Love & Business",
+          "Sourcing",
+          "B2B"
+        ]
       },
       "buydiscoball": {
         "title": "buydiscoball.com",
         "description": "Helping a friend's factory transform. A B2B lead generation machine for the Disco Ball niche.",
-        "tags": ["Factory Transformation", "Niche Market"]
+        "tags": [
+          "Factory Transformation",
+          "Niche Market"
+        ]
       },
       "ifan": {
         "title": "ifanholding.com",
         "description": "Built an omni-channel marketing system with AI automation to boost global lead generation.",
-        "tags": ["Corporate", "Strategy", "Automation"]
+        "tags": [
+          "Corporate",
+          "Strategy",
+          "Automation"
+        ]
       }
     }
   },
   "Content": {
-    "title": "TUTORIALS & INSIGHTS",
+    "title": "TUTORIALS & <italic>INSIGHTS</italic>",
     "subtitle": "Knowledge Hub",
     "explore": "Explore Full Library",
     "readMore": "Read Article",
     "contact": {
-      "title": "LET'S WORK TOGETHER",
+      "title": "LET'S WORK <italic>TOGETHER</italic>",
       "subtitle": "Made with ❤️ in Yiwu."
     }
   },

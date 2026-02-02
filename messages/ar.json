@@ -1,113 +1,152 @@
 {
   "Hero": {
-    "welcome": "Welcome",
-    "okdjw": "It's OK, asking Du Jingwei.",
-    "description": "IFAN Marketing Manager | Gen Z Creator from Yiwu.",
-    "slogan": "Marketing Mind. Developer Hands. Design Soul.",
-    "viewProjects": "View Projects",
-    "contactMe": "Contact Me",
-    "scroll": "Scroll",
-    "segments": ["It's OK,", "asking", "Du Jing Wei."]
+    "welcome": "أهلاً بك",
+    "okdjw": "عند الحيرة، اسأل جينغ وي. ثقة.",
+    "description": "مدير تسويق في IFAN | رائد أعمال في إيوا",
+    "slogan": "عقلية تسويقية · تنفيذ تقني · روح التصميم",
+    "viewProjects": "عرض المشاريع",
+    "contactMe": "تواصل معي",
+    "scroll": "مرر للأسفل",
+    "segments": [
+      "عند الحيرة،",
+      "اسأل",
+      "جينغ وي دو."
+    ]
   },
   "About": {
-    "title": "Born in the Heart of Global Commerce.",
-    "origin": "Born in Yiwu, China — the center of the world's supermarket. Growing up immersed in the flow of commerce has given me a natural sensitivity to traffic and transactions.",
-    "career": "I don't just understand foreign trade; I understand how to leverage technology to move markets. Currently Marketing Manager at IFAN, dedicated to building omni-channel marketing systems driven by data.",
-    "nameStory": "Justin / Du Jingwei. Keep it Short, Keep it OK. \"It's OK, asking Du Jingwei.\" Reliable and straightforward — that's my style.",
-    "info": "EST. 2000 / YIWU",
+    "title": "ولدت في مركز التجارة العالمي",
+    "origin": "ولدت في عام 2000 في مدينة إيوا بالصين - سوبر ماركت العالم. نشأتي في مركز التدفقات التجارية منحتني حسًا طبيعيًا في فهم الأسواق.",
+    "career": "لا أفهم التجارة الخارجية فحسب؛ بل أجيد استخدام التكنولوجيا لفتح آفاق جديدة في السوق. كمدير تسويق في IFAN، أقوم ببناء أنظمة تسويقية متطورة.",
+    "nameStory": "Justin / جينغ وي. اجعلها قصيرة، اجعلها بخير. \"كل شيء بخير، اسأل جينغ وي.\" البساطة والوضوح هما أسلوبي.",
+    "info": "2000 / إيوا",
     "tags": {
-      "origin": "Tag 01: The Origin",
-      "career": "Tag 02: The Career",
-      "name": "Tag 03: The Name"
+      "origin": "وسم 01: النشأة",
+      "career": "وسم 02: المهنة",
+      "name": "وسم 03: الاسم"
     }
   },
   "Stack": {
-    "title": "SKILLS & TOOLS",
-    "subtitle": "Capabilities",
-    "expertise": "Expertise",
+    "title": "المهارات والأدوات",
+    "subtitle": "القدرات",
+    "expertise": "الخبرات",
     "skills": {
       "growth": {
-        "title": "Brand Strategy",
-        "description": "Building brand walls, not just selling products.",
-        "tags": ["Strategy", "Ads", "SEO"]
+        "title": "استراتيجية العلامة التجارية",
+        "description": "بناء هوية قوية، وليس فقط بيع المنتجات.",
+        "tags": [
+          "استراتيجية",
+          "إعلانات",
+          "SEO"
+        ]
       },
       "dev": {
-        "title": "Full-stack Dev",
-        "description": "Next.js, React, and high-performance web apps.",
-        "tags": ["Next.js", "React", "Node.js"]
+        "title": "تطوير شامل (Full-stack)",
+        "description": "بناء تطبيقات ويب عالية الأداء باستخدام Next.js.",
+        "tags": [
+          "Next.js",
+          "React",
+          "Node.js"
+        ]
       },
       "ai": {
-        "title": "AI Automation",
-        "description": "Leveraging AI to scale business operations.",
-        "tags": ["GPT", "Workflow", "Efficiency"]
+        "title": "أتمتة الذكاء الاصطناعي",
+        "description": "توسيع العمليات التجارية باستخدام الذكاء الاصطناعي لرفع الكفاءة.",
+        "tags": [
+          "GPT",
+          "سير العمل",
+          "كفاءة"
+        ]
       },
       "design": {
-        "title": "UI/UX Design",
-        "description": "Design that converts, starting with aesthetics.",
-        "tags": ["Figma", "Motion", "UX"]
+        "title": "تصميم UI/UX",
+        "description": "يبدأ بالجمال وينتهي بالتحويل الفعلي.",
+        "tags": [
+          "Figma",
+          "تحريك",
+          "UX"
+        ]
       },
       "marketing": {
-        "title": "Global Marketing",
-        "description": "Yiwu-born perspective for global growth.",
-        "tags": ["B2B", "Sourcing", "Global"]
+        "title": "تسويق عالمي",
+        "description": "رؤية عالمية للنمو تنطلق من إيوا إلى العالم.",
+        "tags": [
+          "B2B",
+          "توريد",
+          "عالمي"
+        ]
       },
       "analytics": {
-        "title": "Data Analytics",
-        "description": "Turning raw data into actionable insights.",
-        "tags": ["Metrics", "Growth", "BI"]
+        "title": "تحليل البيانات",
+        "description": "تحويل البيانات الخام إلى رؤى تجارية قابلة للتنفيذ.",
+        "tags": [
+          "مقاييس",
+          "نمو",
+          "BI"
+        ]
       }
     }
   },
   "Projects": {
-    "title": "SELECTED WORKS",
-    "subtitle": "Case Studies",
-    "scroll": "Scroll to explore",
-    "viewLive": "View Live",
+    "title": "أعمال مختارة",
+    "subtitle": "دراسات حالة",
+    "scroll": "مرر للاستكشاف",
+    "viewLive": "مشاهدة مباشرة",
     "items": {
       "chineseyiwu": {
         "title": "chineseyiwu.com",
-        "description": "A sourcing platform for Yiwu products built for my girlfriend. End-to-end digital sourcing display.",
-        "tags": ["Love & Business", "Sourcing", "B2B"]
+        "description": "منصة توريد في إيوا. من اختيار المنتجات إلى التصدير.",
+        "tags": [
+          "حب وعمل",
+          "توريد",
+          "B2B"
+        ]
       },
       "buydiscoball": {
         "title": "buydiscoball.com",
-        "description": "Helping a friend's factory transform. A B2B lead generation machine for the Disco Ball niche.",
-        "tags": ["Factory Transformation", "Niche Market"]
+        "description": "دعم المصانع في التحول الرقمي في مجالات متخصصة مثل كرات الديسكو.",
+        "tags": [
+          "تحول",
+          "تخصص"
+        ]
       },
       "ifan": {
         "title": "ifanholding.com",
-        "description": "Built an omni-channel marketing system with AI automation to boost global lead generation.",
-        "tags": ["Corporate", "Strategy", "Automation"]
+        "description": "أنظمة تسويق شاملة وأتمتة باستخدام الذكاء الاصطناعي.",
+        "tags": [
+          "شركات",
+          "استراتيجية",
+          "أتمتة"
+        ]
       }
     }
   },
   "Content": {
-    "title": "TUTORIALS & INSIGHTS",
-    "subtitle": "Knowledge Hub",
-    "explore": "Explore Full Library",
-    "readMore": "Read Article",
+    "title": "دروس ورؤى",
+    "subtitle": "مركز المعرفة",
+    "explore": "استكشاف الكل",
+    "readMore": "اقرأ المزيد",
     "contact": {
-      "title": "LET'S WORK TOGETHER",
-      "subtitle": "Made with ❤️ in Yiwu."
+      "title": "لنعمل معًا",
+      "subtitle": "صنع بـ ❤️ في إيوا."
     }
   },
   "Metadata": {
-    "title": "Justin Du | Growth Hacker & Full-stack Developer",
-    "description": "Marketing Mind. Developer Hands. Design Soul. Born in Yiwu, Built for Global."
+    "title": "دو جينغ وي | خبير نمو ومطور شامل",
+    "description": "عقلية تسويقية · تنفيذ تقني · روح التصميم. من إيوا إلى العالم."
   },
   "Archive": {
-    "title": "RESOURCE ARCHIVE",
-    "subtitle": "Explore Full Library",
-    "resources": "Resources",
-    "articles": "Articles",
-    "all": "All",
+    "title": "أرشيف الموارد",
+    "subtitle": "استكشف المجموعة",
+    "resources": "موارد",
+    "articles": "مقالات",
+    "all": "الكل",
     "categories": {
-      "Sourcing": "Sourcing Tools",
-      "AI": "AI Automation",
-      "Guide": "Practical Guides",
-      "Growth": "Growth Hacking"
+      "Sourcing": "أدوات التوريد",
+      "AI": "أتمتة الذكاء الاصطناعي",
+      "Guide": "أدلة عملية",
+      "Growth": "هاكر النمو"
     },
-    "noContent": "No content found",
-    "backHome": "Back to Home"
+    "noContent": "لا يوجد محتوى",
+    "backHome": "العودة للرئيسية"
   }
 }

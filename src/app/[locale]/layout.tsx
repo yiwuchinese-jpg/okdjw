@@ -56,8 +56,13 @@ export async function generateMetadata({
     alternates: {
       canonical: `https://okdjw.com/${locale}`,
       languages: {
-        'zh-CN': 'https://okdjw.com/zh',
-        'en-US': 'https://okdjw.com/en',
+        'zh': 'https://okdjw.com/zh',
+        'en': 'https://okdjw.com/en',
+        'es': 'https://okdjw.com/es',
+        'ru': 'https://okdjw.com/ru',
+        'ar': 'https://okdjw.com/ar',
+        'de': 'https://okdjw.com/de',
+        'fr': 'https://okdjw.com/fr',
       },
     },
     robots: {
@@ -93,9 +98,9 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <body
-        className={`${outfit.variable} ${notoMobile.variable} antialiased cursor-none font-sans`}
+        className={`${outfit.variable} ${notoMobile.variable} antialiased cursor-none font-sans overflow-x-hidden`}
       >
         <NextIntlClientProvider messages={messages}>
           <CustomCursor />

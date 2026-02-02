@@ -1,113 +1,152 @@
 {
   "Hero": {
-    "welcome": "Welcome",
-    "okdjw": "It's OK, asking Du Jingwei.",
-    "description": "IFAN Marketing Manager | Gen Z Creator from Yiwu.",
-    "slogan": "Marketing Mind. Developer Hands. Design Soul.",
-    "viewProjects": "View Projects",
-    "contactMe": "Contact Me",
-    "scroll": "Scroll",
-    "segments": ["It's OK,", "asking", "Du Jing Wei."]
+    "welcome": "ДОБРО ПОЖАЛОВАТЬ",
+    "okdjw": "Есть вопрос? Спроси Цзинвэя. Надежно.",
+    "description": "Менеджер по маркетингу IFAN | Предприниматель в Иу",
+    "slogan": "Маркетинговое мышление · Техническая реализация · Душа дизайна",
+    "viewProjects": "Посмотреть проекты",
+    "contactMe": "Связаться со мной",
+    "scroll": "Листайте вниз",
+    "segments": [
+      "Есть вопрос?",
+      "Спроси",
+      "Цзинвэя Ду."
+    ]
   },
   "About": {
-    "title": "Born in the Heart of Global Commerce.",
-    "origin": "Born in Yiwu, China — the center of the world's supermarket. Growing up immersed in the flow of commerce has given me a natural sensitivity to traffic and transactions.",
-    "career": "I don't just understand foreign trade; I understand how to leverage technology to move markets. Currently Marketing Manager at IFAN, dedicated to building omni-channel marketing systems driven by data.",
-    "nameStory": "Justin / Du Jingwei. Keep it Short, Keep it OK. \"It's OK, asking Du Jingwei.\" Reliable and straightforward — that's my style.",
-    "info": "EST. 2000 / YIWU",
+    "title": "Рожденный в центре мировой торговли",
+    "origin": "Я родился в 2000 году в Иу, Китай — мировом супермаркете. Наблюдение за потоком товаров с детства дало мне чутье на тренды и сделки.",
+    "career": "Я не просто знаю внешнюю торговлю; я знаю, как использовать технологии для захвата рынка. В качестве менеджера в IFAN я строю системы омниканального маркетинга.",
+    "nameStory": "Justin / Ду Цзинвэй. Просто и надежно. \"Все Окей, спроси Ду Цзинвэя.\" Прямота и лаконичность — мой стиль.",
+    "info": "2000 / Иу",
     "tags": {
-      "origin": "Tag 01: The Origin",
-      "career": "Tag 02: The Career",
-      "name": "Tag 03: The Name"
+      "origin": "Тег 01: Происхождение",
+      "career": "Тег 02: Карьера",
+      "name": "Тег 03: Имя"
     }
   },
   "Stack": {
-    "title": "SKILLS & TOOLS",
-    "subtitle": "Capabilities",
-    "expertise": "Expertise",
+    "title": "НАВЫКИ И ИНСТРУМЕНТЫ",
+    "subtitle": "Возможности",
+    "expertise": "Экспертиза",
     "skills": {
       "growth": {
-        "title": "Brand Strategy",
-        "description": "Building brand walls, not just selling products.",
-        "tags": ["Strategy", "Ads", "SEO"]
+        "title": "Бренд-стратегия",
+        "description": "Создание барьеров бренда, а не просто продажа товаров.",
+        "tags": [
+          "Стратегия",
+          "Реклама",
+          "SEO"
+        ]
       },
       "dev": {
-        "title": "Full-stack Dev",
-        "description": "Next.js, React, and high-performance web apps.",
-        "tags": ["Next.js", "React", "Node.js"]
+        "title": "Full-stack разработка",
+        "description": "Создание высокопроизводительных веб-приложений на Next.js.",
+        "tags": [
+          "Next.js",
+          "React",
+          "Node.js"
+        ]
       },
       "ai": {
-        "title": "AI Automation",
-        "description": "Leveraging AI to scale business operations.",
-        "tags": ["GPT", "Workflow", "Efficiency"]
+        "title": "ИИ Автоматизация",
+        "description": "Масштабирование бизнес-операций с помощью ИИ для эффективности.",
+        "tags": [
+          "GPT",
+          "Workflows",
+          "Эффективность"
+        ]
       },
       "design": {
-        "title": "UI/UX Design",
-        "description": "Design that converts, starting with aesthetics.",
-        "tags": ["Figma", "Motion", "UX"]
+        "title": "UI/UX Дизайн",
+        "description": "Начинается с эстетики, заканчивается конверсией.",
+        "tags": [
+          "Figma",
+          "Анимация",
+          "UX"
+        ]
       },
       "marketing": {
-        "title": "Global Marketing",
-        "description": "Yiwu-born perspective for global growth.",
-        "tags": ["B2B", "Sourcing", "Global"]
+        "title": "Глобальный маркетинг",
+        "description": "Глобальный взгляд на рост из Иу на весь мир.",
+        "tags": [
+          "B2B",
+          "Sourcing",
+          "Global"
+        ]
       },
       "analytics": {
-        "title": "Data Analytics",
-        "description": "Turning raw data into actionable insights.",
-        "tags": ["Metrics", "Growth", "BI"]
+        "title": "Анализ данных",
+        "description": "Превращение сырых данных в полезные бизнес-инсайты.",
+        "tags": [
+          "Метрики",
+          "Рост",
+          "BI"
+        ]
       }
     }
   },
   "Projects": {
-    "title": "SELECTED WORKS",
-    "subtitle": "Case Studies",
-    "scroll": "Scroll to explore",
-    "viewLive": "View Live",
+    "title": "ИЗБРАННЫЕ РАБОТЫ",
+    "subtitle": "Кейсы",
+    "scroll": "Листайте, чтобы изучить",
+    "viewLive": "Демо",
     "items": {
       "chineseyiwu": {
         "title": "chineseyiwu.com",
-        "description": "A sourcing platform for Yiwu products built for my girlfriend. End-to-end digital sourcing display.",
-        "tags": ["Love & Business", "Sourcing", "B2B"]
+        "description": "Платформа для сорсинга в Иу. От выбора товаров до экспорта.",
+        "tags": [
+          "Бизнес",
+          "Сорсинг",
+          "B2B"
+        ]
       },
       "buydiscoball": {
         "title": "buydiscoball.com",
-        "description": "Helping a friend's factory transform. A B2B lead generation machine for the Disco Ball niche.",
-        "tags": ["Factory Transformation", "Niche Market"]
+        "description": "Помощь заводам в переходе на цифровые продажи в нише Disco Ball.",
+        "tags": [
+          "Завод",
+          "Ниша"
+        ]
       },
       "ifan": {
         "title": "ifanholding.com",
-        "description": "Built an omni-channel marketing system with AI automation to boost global lead generation.",
-        "tags": ["Corporate", "Strategy", "Automation"]
+        "description": "Омниканальные системы маркетинга и ИИ-автоматизация.",
+        "tags": [
+          "Корпоративный",
+          "Стратегия",
+          "Авто"
+        ]
       }
     }
   },
   "Content": {
-    "title": "TUTORIALS & INSIGHTS",
-    "subtitle": "Knowledge Hub",
-    "explore": "Explore Full Library",
-    "readMore": "Read Article",
+    "title": "ОБУЧЕНИЕ И ИНСАЙТЫ",
+    "subtitle": "База знаний",
+    "explore": "Изучить всё",
+    "readMore": "Читать",
     "contact": {
-      "title": "LET'S WORK TOGETHER",
-      "subtitle": "Made with ❤️ in Yiwu."
+      "title": "ДАВАЙТЕ РАБОТАТЬ ВМЕСТЕ",
+      "subtitle": "Сделано с ❤️ в Иу."
     }
   },
   "Metadata": {
-    "title": "Justin Du | Growth Hacker & Full-stack Developer",
-    "description": "Marketing Mind. Developer Hands. Design Soul. Born in Yiwu, Built for Global."
+    "title": "Ду Цзинвэй | Growth Hacker & Full-stack разработчик",
+    "description": "Маркетинговое мышление · Техническая реализация · Душа дизайна. Из Иу во весь мир."
   },
   "Archive": {
-    "title": "RESOURCE ARCHIVE",
-    "subtitle": "Explore Full Library",
-    "resources": "Resources",
-    "articles": "Articles",
-    "all": "All",
+    "title": "АРХИВ РЕСУРСОВ",
+    "subtitle": "Исследовать",
+    "resources": "Ресурсы",
+    "articles": "Статьи",
+    "all": "Все",
     "categories": {
-      "Sourcing": "Sourcing Tools",
-      "AI": "AI Automation",
-      "Guide": "Practical Guides",
+      "Sourcing": "Инструменты сорсинга",
+      "AI": "ИИ Автоматизация",
+      "Guide": "Инструкции",
       "Growth": "Growth Hacking"
     },
-    "noContent": "No content found",
-    "backHome": "Back to Home"
+    "noContent": "Контент не найден",
+    "backHome": "На главную"
   }
 }
