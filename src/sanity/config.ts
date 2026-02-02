@@ -4,11 +4,13 @@ import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './schemas'
 import { projectId, dataset } from './env'
 
+import { media } from 'sanity-plugin-media'
+
 export default defineConfig({
   basePath: '/studio',
   projectId,
   dataset,
-  plugins: [structureTool(), visionTool()],
+  plugins: [structureTool(), visionTool(), media()],
   schema: {
     types: schemaTypes,
   },
