@@ -1,53 +1,68 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, useSpring } from "framer-motion";
+import { useEffect } from "react";
+import { motion, useSpring, useMotionValue } from "framer-motion";
 
 export const CustomCursor = () => {
-  const [isHovered, setIsHovered] = useState(false);
-  
-  const cursorX = useSpring(0, { damping: 20, stiffness: 100 });
-  const cursorY = useSpring(0, { damping: 20, stiffness: 100 });
+  // Use MotionValues for everything to avoid React re-renders
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+  const scale = useMotionValue(1);
+  const opacity = useMotionValue(0);
+
+  // High performance spring for that "snappier" feel (higher stiffness)
+  const springConfig = { damping: 25, stiffness: 400, mass: 0.5 };
+  const smoothX = useSpring(cursorX, springConfig);
+  const smoothY = useSpring(cursorY, springConfig);
 
   useEffect(() => {
+    // Show cursor on first movement
+    const onFirstMove = () => opacity.set(1);
+
     const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX - 16);
-      cursorY.set(e.clientY - 16);
+      // Direct set on MotionValue is extremely fast
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
     };
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (
-        target.tagName === "A" || 
-        target.tagName === "BUTTON" || 
-        target.closest("button") || 
-        target.closest("a")
-      ) {
-        setIsHovered(true);
+      const isInteractable =
+        target.tagName === "A" ||
+        target.tagName === "BUTTON" ||
+        target.closest("button") ||
+        target.closest("a") ||
+        target.style.cursor === "pointer";
+
+      if (isInteractable) {
+        scale.set(2.5);
       } else {
-        setIsHovered(false);
+        scale.set(1);
       }
     };
 
-    window.addEventListener("mousemove", moveCursor);
-    window.addEventListener("mouseover", handleMouseOver);
+    window.addEventListener("mousemove", moveCursor, { passive: true });
+    window.addEventListener("mousemove", onFirstMove, { once: true });
+    window.addEventListener("mouseover", handleMouseOver, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", moveCursor);
+      window.removeEventListener("mousemove", onFirstMove);
       window.removeEventListener("mouseover", handleMouseOver);
     };
-  }, [cursorX, cursorY]);
+  }, [cursorX, cursorY, scale, opacity]);
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-8 h-8 rounded-full border border-primary pointer-events-none z-[9999] hidden md:block mix-blend-difference"
+      className="fixed top-0 left-0 w-8 h-8 rounded-full border-2 border-primary pointer-events-none z-[9999] hidden md:block mix-blend-difference pointer-events-none"
       style={{
-        x: cursorX,
-        y: cursorY,
-        scale: isHovered ? 4 : 1,
-        backgroundColor: isHovered ? "white" : "transparent",
+        x: smoothX,
+        y: smoothY,
+        scale: scale,
+        opacity: opacity,
+        translateX: "-50%",
+        translateY: "-50%",
       }}
-      transition={{ type: "spring", damping: 20, stiffness: 100 }}
     />
   );
 };
