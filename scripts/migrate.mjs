@@ -41,7 +41,7 @@ function markdownToPortableText(markdown) {
 }
 
 async function migrate() {
-    const locales = ['zh', 'en'];
+    const locales = ['zh', 'en', 'es', 'ru', 'ar', 'de', 'fr'];
     const types = ['blog', 'resources', 'tutorials'];
 
     for (const locale of locales) {

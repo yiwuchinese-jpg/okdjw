@@ -1,0 +1,113 @@
+{
+  "Hero": {
+    "welcome": "Welcome",
+    "okdjw": "It's OK, asking Du Jingwei.",
+    "description": "IFAN Marketing Manager | Gen Z Creator from Yiwu.",
+    "slogan": "Marketing Mind. Developer Hands. Design Soul.",
+    "viewProjects": "View Projects",
+    "contactMe": "Contact Me",
+    "scroll": "Scroll",
+    "segments": ["It's OK,", "asking", "Du Jing Wei."]
+  },
+  "About": {
+    "title": "Born in the Heart of Global Commerce.",
+    "origin": "Born in Yiwu, China — the center of the world's supermarket. Growing up immersed in the flow of commerce has given me a natural sensitivity to traffic and transactions.",
+    "career": "I don't just understand foreign trade; I understand how to leverage technology to move markets. Currently Marketing Manager at IFAN, dedicated to building omni-channel marketing systems driven by data.",
+    "nameStory": "Justin / Du Jingwei. Keep it Short, Keep it OK. \"It's OK, asking Du Jingwei.\" Reliable and straightforward — that's my style.",
+    "info": "EST. 2000 / YIWU",
+    "tags": {
+      "origin": "Tag 01: The Origin",
+      "career": "Tag 02: The Career",
+      "name": "Tag 03: The Name"
+    }
+  },
+  "Stack": {
+    "title": "SKILLS & TOOLS",
+    "subtitle": "Capabilities",
+    "expertise": "Expertise",
+    "skills": {
+      "growth": {
+        "title": "Brand Strategy",
+        "description": "Building brand walls, not just selling products.",
+        "tags": ["Strategy", "Ads", "SEO"]
+      },
+      "dev": {
+        "title": "Full-stack Dev",
+        "description": "Next.js, React, and high-performance web apps.",
+        "tags": ["Next.js", "React", "Node.js"]
+      },
+      "ai": {
+        "title": "AI Automation",
+        "description": "Leveraging AI to scale business operations.",
+        "tags": ["GPT", "Workflow", "Efficiency"]
+      },
+      "design": {
+        "title": "UI/UX Design",
+        "description": "Design that converts, starting with aesthetics.",
+        "tags": ["Figma", "Motion", "UX"]
+      },
+      "marketing": {
+        "title": "Global Marketing",
+        "description": "Yiwu-born perspective for global growth.",
+        "tags": ["B2B", "Sourcing", "Global"]
+      },
+      "analytics": {
+        "title": "Data Analytics",
+        "description": "Turning raw data into actionable insights.",
+        "tags": ["Metrics", "Growth", "BI"]
+      }
+    }
+  },
+  "Projects": {
+    "title": "SELECTED WORKS",
+    "subtitle": "Case Studies",
+    "scroll": "Scroll to explore",
+    "viewLive": "View Live",
+    "items": {
+      "chineseyiwu": {
+        "title": "chineseyiwu.com",
+        "description": "A sourcing platform for Yiwu products built for my girlfriend. End-to-end digital sourcing display.",
+        "tags": ["Love & Business", "Sourcing", "B2B"]
+      },
+      "buydiscoball": {
+        "title": "buydiscoball.com",
+        "description": "Helping a friend's factory transform. A B2B lead generation machine for the Disco Ball niche.",
+        "tags": ["Factory Transformation", "Niche Market"]
+      },
+      "ifan": {
+        "title": "ifanholding.com",
+        "description": "Built an omni-channel marketing system with AI automation to boost global lead generation.",
+        "tags": ["Corporate", "Strategy", "Automation"]
+      }
+    }
+  },
+  "Content": {
+    "title": "TUTORIALS & INSIGHTS",
+    "subtitle": "Knowledge Hub",
+    "explore": "Explore Full Library",
+    "readMore": "Read Article",
+    "contact": {
+      "title": "LET'S WORK TOGETHER",
+      "subtitle": "Made with ❤️ in Yiwu."
+    }
+  },
+  "Metadata": {
+    "title": "Justin Du | Growth Hacker & Full-stack Developer",
+    "description": "Marketing Mind. Developer Hands. Design Soul. Born in Yiwu, Built for Global."
+  },
+  "Archive": {
+    "title": "RESOURCE ARCHIVE",
+    "subtitle": "Explore Full Library",
+    "resources": "Resources",
+    "articles": "Articles",
+    "all": "All",
+    "categories": {
+      "Sourcing": "Sourcing Tools",
+      "AI": "AI Automation",
+      "Guide": "Practical Guides",
+      "Growth": "Growth Hacking"
+    },
+    "noContent": "No content found",
+    "backHome": "Back to Home"
+  }
+}

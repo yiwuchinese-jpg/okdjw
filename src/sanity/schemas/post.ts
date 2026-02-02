@@ -42,8 +42,13 @@ export default defineType({
       type: 'string',
       options: {
         list: [
-          { title: '中文', value: 'zh' },
-          { title: 'English', value: 'en' },
+          { title: '中文 (ZH)', value: 'zh' },
+          { title: 'English (EN)', value: 'en' },
+          { title: 'Español (ES)', value: 'es' },
+          { title: 'Русский (RU)', value: 'ru' },
+          { title: 'العربية (AR)', value: 'ar' },
+          { title: 'Deutsch (DE)', value: 'de' },
+          { title: 'Français (FR)', value: 'fr' },
         ],
       },
       initialValue: 'zh',
