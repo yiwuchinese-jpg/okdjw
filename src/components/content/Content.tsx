@@ -1,44 +1,35 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Mail, Instagram, Linkedin, Send } from "lucide-react";
 import { ContentData } from "@/lib/markdown";
 import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 interface ContentProps {
   tutorials: ContentData[];
 }
 
-import { useTranslations } from "next-intl";
-
 export const Content = ({ tutorials }: ContentProps) => {
   const t = useTranslations("Content");
+  const [visibleCount, setVisibleCount] = useState(6);
+
+  const visibleTutorials = tutorials.slice(0, visibleCount);
+  const hasMore = visibleCount < tutorials.length;
+
+  const handleLoadMore = () => {
+    setVisibleCount(prev => prev + 6);
+  };
 
   return (
     <section className="bg-black pt-32">
       {/* Tutorials Section */}
       <div className="container mx-auto px-4 mb-40">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
-          <div>
-            <span className="text-primary font-mono text-[10px] font-bold tracking-[0.5em] uppercase mb-4 block">{t("subtitle")}</span>
-            <h2 className="text-5xl md:text-7xl font-black tracking-tighter">
-              {t.rich("title", {
-                italic: (chunks) => <span className="text-primary italic">{chunks}</span>
-              })}
-            </h2>
-          </div>
-          <Link href="/archive">
-            <motion.button
-              whileHover={{ x: 10, color: "#00f0ff" }}
-              className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-foreground/40 transition-colors cursor-pointer"
-            >
-              {t("explore")} <ArrowUpRight className="w-5 h-5" />
-            </motion.button>
-          </Link>
-        </div>
+        {/* ... existing header code ... */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {tutorials.map((post, index) => {
+          {visibleTutorials.map((post, index) => {
             // Sanity posts don't have a 'type' field in the current query, defaulting them to 'blog' (articles)
             // If it has a type field (from markdown), use it.
             const typeLower = post.type?.toLowerCase() || 'blog';
@@ -57,17 +48,21 @@ export const Content = ({ tutorials }: ContentProps) => {
                 >
                   <div className="flex justify-between items-center mb-8">
                     <div className="flex gap-2">
-                      {post.tags.slice(0, 2).map(tag => (
-                        <span key={tag} className="text-[8px] font-bold uppercase tracking-widest px-2 py-1 bg-primary/10 text-primary rounded-full">
-                          {tag}
-                        </span>
-                      ))}
+                      {/* Filter tags and map */}
+                      {post.tags
+                        ?.filter(tag => tag && tag !== 'ARCHIVE.CATEGORIES.NULL')
+                        .slice(0, 2)
+                        .map(tag => (
+                          <span key={tag} className="text-[8px] font-bold uppercase tracking-widest px-2 py-1 bg-primary/10 text-primary rounded-full">
+                            {tag}
+                          </span>
+                        ))}
                     </div>
                     <span className="text-[10px] font-mono text-foreground/20">
                       {post.date}
                     </span>
                   </div>
-
+                  {/* ... title, description ... */}
                   <h3 className="text-2xl font-bold mb-6 group-hover:text-primary transition-colors leading-tight">
                     {post.title}
                   </h3>
@@ -84,7 +79,21 @@ export const Content = ({ tutorials }: ContentProps) => {
             );
           })}
         </div>
+
+        {hasMore && (
+          <div className="flex justify-center mt-16">
+            <motion.button
+              onClick={handleLoadMore}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-white/5 border border-white/10 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-black transition-all"
+            >
+              {t("loadMore")}
+            </motion.button>
+          </div>
+        )}
       </div>
+
 
       {/* Contact Section */}
       <div className="border-t border-white/5 pt-40 pb-20 px-4 relative overflow-hidden">
