@@ -7,9 +7,13 @@ export function AuthorProfile() {
         <div className="space-y-8 sticky top-32">
             <div className="p-6 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm">
                 <div className="relative mb-6">
-                    <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-primary/20 bg-zinc-900">
-                        {/* Placeholder for avatar, or use one if available */}
-                        <div className="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center text-2xl font-black text-white/10">JD</div>
+                    <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-primary/20 bg-zinc-900 relative">
+                        <Image
+                            src="/images/me.JPG"
+                            alt="Justin Du"
+                            fill
+                            className="object-cover"
+                        />
                     </div>
                     <div className="absolute -bottom-2 -right-2 bg-primary text-black text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
                         Author
