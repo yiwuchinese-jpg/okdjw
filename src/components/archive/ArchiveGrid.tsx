@@ -39,7 +39,7 @@ export const ArchiveGrid = ({ items, type }: ArchiveGridProps) => {
     setHoveredId(null);
   };
 
-  const categories = ["all", ...Array.from(new Set(items.map(item => item.category)))];
+  const categories = ["all", ...Array.from(new Set(items.map(item => item.category).filter(c => c && c !== 'null' && c !== 'undefined' && c !== 'ARCHIVE.CATEGORIES.NULL')))];
 
   // Group by category and limit to 6
   // Filter by category
@@ -108,24 +108,17 @@ export const ArchiveGrid = ({ items, type }: ArchiveGridProps) => {
               className="group relative h-[400px] rounded-[2rem] overflow-hidden border border-white/10 bg-white/[0.03] backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:shadow-[0_40px_100px_rgba(0,240,255,0.25)] shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
             >
               <Link href={`/archive/${type}/${item.slug}`} className="block h-full cursor-none">
-                {/* Background Image Reveal on Hover */}
-                <AnimatePresence>
-                  {hoveredId === item.slug && item.image && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 1.1 }}
-                      animate={{ opacity: 0.2, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.1 }}
-                      className="absolute inset-0 z-0"
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-black/40" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {/* Background Image - Always Visible if Exists */}
+                {item.image && (
+                  <div className="absolute inset-0 z-0 transition-transform duration-700 group-hover:scale-110">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
+                  </div>
+                )}
 
                 <div
                   className="absolute inset-0 p-10 flex flex-col justify-between z-20"
@@ -150,14 +143,6 @@ export const ArchiveGrid = ({ items, type }: ArchiveGridProps) => {
                           </span>
                         ))}
 
-                      {/* Show Category if valid tag is missing or as supplement? 
-                          Original code used t(`categories.${item.category}`) here. 
-                          The user requested fix for "ARCHIVE.CATEGORIES.NULL" which implies `item.category` or tags issues.
-                          Let's stick to showing the Category from metadata as the fallback or primary badge 
-                          BUT check if it's the "NULL" one. 
-                          Wait, the screenshot showed "ARCHIVE.CATEGORIES.NULL" likely coming from `t('categories.' + item.category)`. 
-                          Let's conditionally render the category badge.
-                      */}
                       {item.category && item.category !== 'null' && (
                         <span className="text-[8px] font-bold uppercase tracking-widest px-2 py-1 bg-primary/10 text-primary rounded-lg border border-primary/20">
                           {t(`categories.${item.category}`)}
