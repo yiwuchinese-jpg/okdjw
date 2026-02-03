@@ -12,8 +12,21 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const tutorials = getAllContent("tutorials", locale);
   const blogArticles = getAllContent("blog", locale);
 
-  // Merge and sort them by date to show the latest 3 on the homepage
-  const allContent = [...tutorials, ...blogArticles]
+  // Fetch Sanity Content (including Daily Briefings)
+  let sanityArticles: any[] = [];
+  try {
+    const { getSanityArticles } = await import("@/sanity/lib/queries");
+    sanityArticles = await getSanityArticles(locale);
+  } catch (e) {
+    console.error("Failed to fetch Sanity content for home:", e);
+  }
+
+  // Merge (Sanity + Local) and Deduplicate
+  const allItems = [...sanityArticles, ...tutorials, ...blogArticles];
+  const uniqueItems = Array.from(new Map(allItems.map(item => [item.slug, item])).values());
+
+  // Sort by date and take latest 3
+  const allContent = uniqueItems
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 3);
 
