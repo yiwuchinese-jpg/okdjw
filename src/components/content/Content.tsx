@@ -20,6 +20,25 @@ export const Content = ({ tutorials }: ContentProps) => {
       <div className="container mx-auto px-4 mb-40">
         {/* ... existing header code ... */}
 
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+          <div>
+            <span className="text-primary font-mono text-[10px] font-bold tracking-[0.5em] uppercase mb-4 block">{t("subtitle")}</span>
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter">
+              {t.rich("title", {
+                italic: (chunks) => <span className="text-primary italic">{chunks}</span>
+              })}
+            </h2>
+          </div>
+          <Link href="/archive">
+            <motion.button
+              whileHover={{ x: 10, color: "#00f0ff" }}
+              className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-foreground/40 transition-colors cursor-pointer"
+            >
+              {t("explore")} <ArrowUpRight className="w-5 h-5" />
+            </motion.button>
+          </Link>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {tutorials.map((post, index) => {
             // Sanity posts don't have a 'type' field in the current query, defaulting them to 'blog' (articles)
