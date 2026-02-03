@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "generate-images": "tsx scripts/generate-images.ts",
     "lint": "eslint"
   },
   "dependencies": {

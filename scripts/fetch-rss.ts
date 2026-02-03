@@ -285,6 +285,39 @@ async function main() {
     const slug = `daily-trade-briefing-${dateStr}`;
     const title = `Global Trade Daily Briefing - ${dateStr}`;
 
+    console.log("🎨 Generating cover image for daily briefing...");
+    const { generateImage } = await import("./utils/image-generator");
+    await generateImage({ prompt: title, slug });
+    // Note: Since we are using standard "image" field in Frontmatter for local MD, 
+    // but in Sanity we often use "mainImage" or similar.
+    // However, our hybrid fallback logic now checks local file system too!
+    // So we just need to generate the image locally with the same slug.
+    // The Sanity doc doesn't strictly NEED the image reference if our hybrid page logic works?
+    // Wait, the hybrid logic is in Next.js page, it merges.
+    // IF Sanity item has no image field, Next.js tries to check local MD? 
+    // BUT this logic is: "If Sanity item exists but has no image, try to use local image".
+    // Wait, the "local items" are scanned from Markdown files.
+    // The RSS script creates a Sanity document, but DOES NOT create a local Markdown file.
+    // So ArchivePage.tsx mergeContent won't have a "local item" to fallback to!
+    // FIX: We need to either EITHER:
+    // 1. Upload image to Sanity (Best practice)
+    // 2. Create a local dummy Markdown file (Hack)
+    // 3. Update ArchivePage to look for image file on disk directly (Efficient)
+
+    // Let's go with option 1 for best quality, BUT uploading to Sanity via script requires Asset API.
+    // Let's try Option 3: Update `ArchivePage` to assume if image is missing in Sanity, check generated folder?
+    // Actually, simply adding the `image` string path to the Sanity document MIGHT work if the schema supports string URL.
+    // Standard Sanity image field is an object.
+    // Let's see the schema... User didn't provide schema, but `green-trade-2026.md` has `image: string`.
+    // If the Sanity schema for `post` has an `image` field that accepts string (Url), we are good.
+    // If it expects an Image object, we need to upload.
+
+    // Let's assume we can save a string path for now, or just rely on the fact that we can fix the frontend to look for it.
+    // Actually, `ArchivePage.tsx` expects `item.image` to be a URL string. 
+    // So if we save the relative path string to Sanity, it should work if schema allows.
+
+    const imagePath = `/images/generated/${slug}.png`;
+
     const doc = {
         _type: 'post',
         title,
@@ -293,7 +326,12 @@ async function main() {
         publishedAt: new Date().toISOString(),
         description: `Comprehensive daily digest of Global Finance, Logistics, and Market Trends for ${dateStr}.`,
         body: blocks,
-        tags: ['Daily Briefing', 'Trade News', 'Logistics', 'Finance']
+        tags: ['Daily Briefing', 'Trade News', 'Logistics', 'Finance'],
+        // Try setting image as string. If schema fails, we'll need to upload.
+        // Most "smart" schemas might have a separate url field or we repurpose one.
+        // Let's look at `src/sanity/schemas/post.ts` if possible? I don't have it open.
+        // I'll try to set `image: imagePath`.
+        image: imagePath
     };
 
     // Check existing
