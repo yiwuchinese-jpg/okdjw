@@ -1,10 +1,18 @@
 ---
-title: "La Ofensiva Verde: Cómo Yiwu está Revirtiendo la Ansiedad por los 'Aranceles al Carbono' en 2026"
-date: "2026-02-02"
-tags: ["Comercio Exterior", "Sostenibilidad", "CBAM", "Yiwu"]
-category: "Sourcing"
-image: "/images/blog/green-trade-2026.jpg"
-description: "Un análisis profundo de la revolución verde de Yiwu en 2026: del cumplimiento pasivo de CBAM al aprovechamiento de 'Tarjetas Verdes Digitales'."
+title: >-
+  La Ofensiva Verde: Cómo Yiwu está Revirtiendo la Ansiedad por los 'Aranceles
+  al Carbono' en 2026
+date: '2026-02-02'
+tags:
+  - Comercio Exterior
+  - Sostenibilidad
+  - CBAM
+  - Yiwu
+category: Sourcing
+image: /images/generated/green-trade-2026.png
+description: >-
+  Un análisis profundo de la revolución verde de Yiwu en 2026: del cumplimiento
+  pasivo de CBAM al aprovechamiento de 'Tarjetas Verdes Digitales'.
 ---
 
 # La Ofensiva Verde: Cómo Yiwu está Revirtiendo la Ansiedad por los 'Aranceles al Carbono' en 2026

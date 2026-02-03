@@ -1,10 +1,18 @@
 ---
-title: "2026: Das Jahr der Agentischen KI - Neugestaltung des globalen Geschäftsparadigmas"
-date: "2026-02-02"
-tags: ["KI", "Agentische KI", "Digitale Transformation"]
-category: "AI"
-image: "/images/blog/agentic-ai-2026.jpg"
-description: "Im Jahr 2026 ist KI kein Chatfenster mehr, sondern ein autonomer Agent. Erfahren Sie, wie Unternehmen agentische KI nutzen, um komplexe Workflows zu automatisieren."
+title: >-
+  2026: Das Jahr der Agentischen KI - Neugestaltung des globalen
+  Geschäftsparadigmas
+date: '2026-02-02'
+tags:
+  - KI
+  - Agentische KI
+  - Digitale Transformation
+category: AI
+image: /images/generated/agentic-ai-2026.png
+description: >-
+  Im Jahr 2026 ist KI kein Chatfenster mehr, sondern ein autonomer Agent.
+  Erfahren Sie, wie Unternehmen agentische KI nutzen, um komplexe Workflows zu
+  automatisieren.
 ---
 
 # 2026: Das Jahr der Agentischen KI - Neugestaltung des globalen Geschäftsparadigmas

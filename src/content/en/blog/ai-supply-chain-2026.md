@@ -1,10 +1,18 @@
 ---
-title: "Multimodal & A2A: The Era of 'Self-Driving' Global Supply Chains in 2026"
-date: "2026-02-02"
-tags: ["Supply Chain", "AI", "Logistics Tech", "A2A"]
-category: "Growth"
-image: "/images/blog/ai-supply-chain-2026.jpg"
-description: "In 2026, cross-border logistics is no longer a black box. The fusion of Multimodal AI and Agent-to-Agent protocols has enabled 'Self-Driving' supply chains. Discover how intelligent orchestration networks reduce operational costs by over 40%."
+title: 'Multimodal & A2A: The Era of ''Self-Driving'' Global Supply Chains in 2026'
+date: '2026-02-02'
+tags:
+  - Supply Chain
+  - AI
+  - Logistics Tech
+  - A2A
+category: Growth
+image: /images/generated/ai-supply-chain-2026.png
+description: >-
+  In 2026, cross-border logistics is no longer a black box. The fusion of
+  Multimodal AI and Agent-to-Agent protocols has enabled 'Self-Driving' supply
+  chains. Discover how intelligent orchestration networks reduce operational
+  costs by over 40%.
 ---
 
 # Multimodal & A2A: The Era of 'Self-Driving' Global Supply Chains in 2026

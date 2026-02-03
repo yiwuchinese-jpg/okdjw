@@ -138,6 +138,17 @@ export default async function ArticleDetailPage({
                 </span>
               </div>
 
+              {contentData.image && (
+                <div className="mb-12 rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative aspect-video">
+                  <img
+                    src={contentData.image}
+                    alt={contentData.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                </div>
+              )}
+
               <h1 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-8 leading-tight uppercase">
                 {contentData.title}
               </h1>
@@ -181,6 +192,6 @@ export default async function ArticleDetailPage({
         </div>
 
       </div>
-    </main>
+    </main >
   );
 }

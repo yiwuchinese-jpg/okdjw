@@ -1,10 +1,18 @@
 ---
-title: "2026: El Año de la IA Agéntica - Reconfigurando el Paradigma Empresarial Global"
-date: "2026-02-02"
-tags: ["IA", "IA Agéntica", "Transformación Digital"]
-category: "AI"
-image: "/images/blog/agentic-ai-2026.jpg"
-description: "En 2026, la IA ya no es una ventana de chat, sino un Agente autónomo. Explore cómo las empresas están aprovechando la IA Agéntica para automatizar flujos de trabajo complejos."
+title: >-
+  2026: El Año de la IA Agéntica - Reconfigurando el Paradigma Empresarial
+  Global
+date: '2026-02-02'
+tags:
+  - IA
+  - IA Agéntica
+  - Transformación Digital
+category: AI
+image: /images/generated/agentic-ai-2026.png
+description: >-
+  En 2026, la IA ya no es una ventana de chat, sino un Agente autónomo. Explore
+  cómo las empresas están aprovechando la IA Agéntica para automatizar flujos de
+  trabajo complejos.
 ---
 
 # 2026: El Año de la IA Agéntica - Reconfigurando el Paradigma Empresarial Global

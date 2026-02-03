@@ -1,10 +1,19 @@
 ---
-title: "The Green Offensive: How Yiwu is Reversing Global 'Carbon Tariff' Anxiety in 2026"
-date: "2026-02-02"
-tags: ["Foreign Trade", "Sustainability", "CBAM", "Yiwu Sourcing"]
-category: "Sourcing"
-image: "/images/blog/green-trade-2026.jpg"
-description: "A deep analysis of Yiwu's green revolution in 2026: From passive CBAM compliance to leveraging 'Digital Green Cards' for high-value export. Presenting the latest selection criteria for global buyers in 2026."
+title: >-
+  The Green Offensive: How Yiwu is Reversing Global 'Carbon Tariff' Anxiety in
+  2026
+date: '2026-02-02'
+tags:
+  - Foreign Trade
+  - Sustainability
+  - CBAM
+  - Yiwu Sourcing
+category: Sourcing
+image: /images/generated/green-trade-2026.png
+description: >-
+  A deep analysis of Yiwu's green revolution in 2026: From passive CBAM
+  compliance to leveraging 'Digital Green Cards' for high-value export.
+  Presenting the latest selection criteria for global buyers in 2026.
 ---
 
 # The Green Offensive: How Yiwu is Reversing Global 'Carbon Tariff' Anxiety in 2026

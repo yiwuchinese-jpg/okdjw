@@ -1,10 +1,16 @@
 ---
-title: "2026 : L'année de l'IA Agentique - Refonte du paradigme commercial mondial"
-date: "2026-02-02"
-tags: ["IA", "IA Agentique", "Transformation Digitale"]
-category: "AI"
-image: "/images/blog/agentic-ai-2026.jpg"
-description: "En 2026, l'IA n'est plus une fenêtre de chat, mais un Agent autonome. Découvrez comment les entreprises exploitent l'IA Agentique pour automatiser des flux de travail complexes."
+title: '2026 : L''année de l''IA Agentique - Refonte du paradigme commercial mondial'
+date: '2026-02-02'
+tags:
+  - IA
+  - IA Agentique
+  - Transformation Digitale
+category: AI
+image: /images/generated/agentic-ai-2026.png
+description: >-
+  En 2026, l'IA n'est plus une fenêtre de chat, mais un Agent autonome.
+  Découvrez comment les entreprises exploitent l'IA Agentique pour automatiser
+  des flux de travail complexes.
 ---
 
 # 2026 : L'année de l'IA Agentique - Refonte du paradigme commercial mondial

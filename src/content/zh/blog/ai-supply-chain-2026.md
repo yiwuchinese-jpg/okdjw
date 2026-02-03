@@ -1,10 +1,15 @@
 ---
-title: "多模态与 A2A：2026年全球供应链的“自动驾驶”时代"
-date: "2026-02-02"
-tags: ["供应链", "AI", "物流科技", "A2A"]
-category: "Growth"
-image: "/images/blog/ai-supply-chain-2026.jpg"
-description: "2026年，跨境物流不再是黑盒。多模态AI与Agent-to-Agent协议的结合，让供应链实现了‘自动驾驶’。本文揭秘如何利用智能体协调网络降低40%以上的运营成本。"
+title: 多模态与 A2A：2026年全球供应链的“自动驾驶”时代
+date: '2026-02-02'
+tags:
+  - 供应链
+  - AI
+  - 物流科技
+  - A2A
+category: Growth
+image: /images/generated/ai-supply-chain-2026.png
+description: >-
+  2026年，跨境物流不再是黑盒。多模态AI与Agent-to-Agent协议的结合，让供应链实现了‘自动驾驶’。本文揭秘如何利用智能体协调网络降低40%以上的运营成本。
 ---
 
 # 多模态与 A2A：2026年全球供应链的“自动驾驶”时代

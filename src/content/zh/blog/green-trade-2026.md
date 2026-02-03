@@ -1,10 +1,14 @@
 ---
-title: "绿色进军：2026年义乌如何逆转全球“碳关税”焦虑"
-date: "2026-02-02"
-tags: ["外贸", "可持续发展", "CBAM", "义乌采购"]
-category: "Sourcing"
-image: "/images/blog/green-trade-2026.jpg"
-description: "深度剖析2026年义乌外贸企业的绿色革命：从被动应对CBAM到主动利用“数字绿卡”获取高附加值。为您呈现2026年全球采购商的最新筛选准则。"
+title: 绿色进军：2026年义乌如何逆转全球“碳关税”焦虑
+date: '2026-02-02'
+tags:
+  - 外贸
+  - 可持续发展
+  - CBAM
+  - 义乌采购
+category: Sourcing
+image: /images/generated/green-trade-2026.png
+description: 深度剖析2026年义乌外贸企业的绿色革命：从被动应对CBAM到主动利用“数字绿卡”获取高附加值。为您呈现2026年全球采购商的最新筛选准则。
 ---
 
 # 绿色进军：2026年义乌如何逆转全球“碳关税”焦虑

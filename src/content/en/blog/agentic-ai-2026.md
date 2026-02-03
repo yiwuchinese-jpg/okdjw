@@ -1,10 +1,19 @@
 ---
-title: "2026: The Year of Agentic AI - Remaking the Global Business Paradigm from 'Chat' to 'Action'"
-date: "2026-02-02"
-tags: ["AI", "Agentic AI", "Digital Transformation", "2026 Trends"]
-category: "AI"
-image: "/images/blog/agentic-ai-2026.jpg"
-description: "A deep dive into how Agentic AI is reshaping enterprise productivity in 2026. Covering autonomous workflows, multi-agent orchestration networks, and new GEO rules for the next generation of marketing."
+title: >-
+  2026: The Year of Agentic AI - Remaking the Global Business Paradigm from
+  'Chat' to 'Action'
+date: '2026-02-02'
+tags:
+  - AI
+  - Agentic AI
+  - Digital Transformation
+  - 2026 Trends
+category: AI
+image: /images/generated/agentic-ai-2026.png
+description: >-
+  A deep dive into how Agentic AI is reshaping enterprise productivity in 2026.
+  Covering autonomous workflows, multi-agent orchestration networks, and new GEO
+  rules for the next generation of marketing.
 ---
 
 # 2026: The Year of Agentic AI - Remaking the Global Business Paradigm from 'Chat' to 'Action'

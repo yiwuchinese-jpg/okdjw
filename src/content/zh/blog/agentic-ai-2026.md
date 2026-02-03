@@ -1,10 +1,14 @@
 ---
-title: "2026：智能体（Agentic AI）元年——从“对话”到“执行”的全球商业范式重构"
-date: "2026-02-02"
-tags: ["AI", "智能体", "数字化转型", "2026趋势"]
-category: "AI"
-image: "/images/blog/agentic-ai-2026.jpg"
-description: "深度解析2026年Agentic AI如何重塑企业生产力。本文涵盖自主工作流、多智能体协作网络及GEO时代的流量竞争新规则，是企业CEO与CTO的必读指南。"
+title: 2026：智能体（Agentic AI）元年——从“对话”到“执行”的全球商业范式重构
+date: '2026-02-02'
+tags:
+  - AI
+  - 智能体
+  - 数字化转型
+  - 2026趋势
+category: AI
+image: /images/generated/agentic-ai-2026.png
+description: 深度解析2026年Agentic AI如何重塑企业生产力。本文涵盖自主工作流、多智能体协作网络及GEO时代的流量竞争新规则，是企业CEO与CTO的必读指南。
 ---
 
 # 2026：智能体（Agentic AI）元年——从“对话”到“执行”的全球商业范式重构
