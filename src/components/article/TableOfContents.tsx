@@ -5,36 +5,34 @@ import { TocItem } from "@/lib/toc"
 import { cn } from "@/lib/utils"
 import { Menu, X } from "lucide-react"
 import { useState, useEffect } from "react"
+import { useLenis } from "lenis/react"
 
 interface TableOfContentsProps {
     items: TocItem[]
 }
 
+// ... inside component ...
+
 export function TableOfContents({ items }: TableOfContentsProps) {
     const [activeId, setActiveId] = useState<string>("")
     const [isOpen, setIsOpen] = useState(false)
+    const lenis = useLenis()
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setActiveId(entry.target.id)
-                    }
-                })
-            },
-            { rootMargin: "0px 0px -80% 0px" }
-        )
+    // ... useEffect ...
 
-        items.forEach((item) => {
-            const element = document.getElementById(item.id)
-            if (element) observer.observe(element)
-        })
-
-        return () => observer.disconnect()
-    }, [items])
-
-    if (!items?.length) return null
+    const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+        e.preventDefault()
+        setIsOpen(false)
+        if (lenis) {
+            lenis.scrollTo(`#${id}`, { offset: -100 }) // offset for header
+        } else {
+            // Fallback
+            const element = document.getElementById(id)
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" })
+            }
+        }
+    }
 
     const TocList = ({ mobile = false }) => (
         <div className={cn("space-y-4", mobile ? "p-8" : "")}>
@@ -46,9 +44,9 @@ export function TableOfContents({ items }: TableOfContentsProps) {
                     <a
                         key={item.id}
                         href={`#${item.id}`}
-                        onClick={() => setIsOpen(false)}
+                        onClick={(e) => handleScrollTo(e, item.id)}
                         className={cn(
-                            "block text-sm transition-all duration-300 border-l-2 pl-4 py-1",
+                            "block text-sm transition-all duration-300 border-l-2 pl-4 py-1 cursor-pointer",
                             activeId === item.id
                                 ? "border-primary text-white font-medium"
                                 : "border-transparent text-white/40 hover:text-white hover:border-white/20"
