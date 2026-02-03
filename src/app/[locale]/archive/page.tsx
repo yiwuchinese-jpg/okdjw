@@ -27,9 +27,22 @@ export default async function ArchivePage({
     console.error("Failed to fetch Sanity content for archive:", e);
   }
 
-  // Merge them (Sanity content first or sorted by date)
-  const resources = [...sanityResources, ...localResources].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  const articles = [...sanityArticles, ...localArticles].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  // Merge and Deduplicate (Sanity takes precedence)
+  const mergeContent = (sanity: any[], local: any[]) => {
+    const map = new Map<string, any>();
+    // 1. Add Sanity content (Source of Truth)
+    sanity.forEach(item => map.set(item.slug, item));
+    // 2. Add Local content ONLY if not already present
+    local.forEach(item => {
+      if (!map.has(item.slug)) {
+        map.set(item.slug, item);
+      }
+    });
+    return Array.from(map.values()).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  };
+
+  const resources = mergeContent(sanityResources, localResources);
+  const articles = mergeContent(sanityArticles, localArticles);
 
   return (
     <main className="min-h-screen bg-black pt-40 pb-32">
