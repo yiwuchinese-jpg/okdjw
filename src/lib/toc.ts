@@ -13,13 +13,17 @@ export function extractTocFromSanity(body: any[]): TocItem[] {
         .filter((block) => block._type === 'block' && block.style?.startsWith('h'))
         .map((block) => {
             const text = block.children?.map((child: any) => child.text).join('') || ''
+            // Filter out accidental long paragraphs formatted as headers (common in AI gen or copy paste)
+            if (text.length > 100) return null
+
             const level = parseInt(block.style.replace('h', ''))
             return {
-                id: slugify(text), // We will need a slugify function
+                id: slugify(text),
                 text,
                 level,
             }
         })
+        .filter((item): item is TocItem => item !== null)
 }
 
 export function extractTocFromMarkdown(contentHtml: string): TocItem[] {

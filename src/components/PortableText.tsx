@@ -32,8 +32,14 @@ const components = {
     },
     block: {
         h1: ({ children }: any) => <h1 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">{children}</h1>,
-        h2: ({ children }: any) => <h2 className="text-3xl md:text-4xl font-bold text-white mt-12 mb-6 uppercase tracking-tight">{children}</h2>,
-        h3: ({ children }: any) => <h3 className="text-2xl md:text-3xl font-bold text-white mt-8 mb-4 uppercase">{children}</h3>,
+        h2: ({ children, value }: any) => {
+            const id = children?.[0]?.toLowerCase?.()?.replace(/\s+/g, '-') || '';
+            return <h2 id={id} className="text-3xl md:text-4xl font-bold text-white mt-12 mb-6 tracking-tight scroll-mt-32">{children}</h2>
+        },
+        h3: ({ children, value }: any) => {
+            const id = children?.[0]?.toLowerCase?.()?.replace(/\s+/g, '-') || '';
+            return <h3 id={id} className="text-2xl md:text-3xl font-bold text-white mt-8 mb-4 scroll-mt-32">{children}</h3>
+        },
         normal: ({ children }: any) => <p className="text-lg text-white/60 leading-relaxed mb-6">{children}</p>,
         blockquote: ({ children }: any) => (
             <blockquote className="border-l-4 border-primary/30 pl-6 py-2 my-8 italic text-white/80 text-xl font-medium bg-gradient-to-r from-primary/5 to-transparent rounded-r-xl">

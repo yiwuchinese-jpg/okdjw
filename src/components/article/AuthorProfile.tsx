@@ -28,11 +28,12 @@ export function AuthorProfile() {
                 </div>
 
                 <Link
-                    href="https://wa.me/something" // Replace with actual contact
+                    href="https://wa.me/8618666680913"
+                    target="_blank"
                     className="group block w-full bg-white text-black font-bold text-center py-3 rounded-xl hover:bg-primary transition-colors relative overflow-hidden"
                 >
                     <span className="relative z-10 flex items-center justify-center gap-2 text-sm uppercase tracking-wide">
-                        Contact Me <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform" />
+                        WhatsApp Me <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform" />
                     </span>
                 </Link>
             </div>

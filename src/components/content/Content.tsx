@@ -39,7 +39,10 @@ export const Content = ({ tutorials }: ContentProps) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {tutorials.map((post, index) => {
-            const prefix = post.type === 'blog' ? 'articles' : post.type === 'resources' ? 'resources' : 'tutorials';
+            // Sanity posts don't have a 'type' field in the current query, defaulting them to 'blog' (articles)
+            // If it has a type field (from markdown), use it.
+            const typeLower = post.type?.toLowerCase() || 'blog';
+            const prefix = typeLower === 'tutorials' ? 'tutorials' : typeLower === 'resources' ? 'resources' : 'articles';
             const href = `/archive/${prefix}/${post.slug}`;
 
             return (

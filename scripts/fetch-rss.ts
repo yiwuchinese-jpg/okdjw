@@ -254,6 +254,7 @@ async function main() {
 
             // Read More Link
             if (item.link) {
+                const linkKey = Math.random().toString(36).substring(7);
                 blocks.push({
                     _type: 'block',
                     style: 'normal',
@@ -262,10 +263,10 @@ async function main() {
                         {
                             _type: 'span',
                             text: 'Click here',
-                            marks: [item.link]
+                            marks: [linkKey]
                         }
                     ],
-                    markDefs: [{ _key: item.link, _type: 'link', href: item.link }]
+                    markDefs: [{ _key: linkKey, _type: 'link', href: item.link }]
                 });
             }
         }
