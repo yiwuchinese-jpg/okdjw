@@ -42,22 +42,26 @@ export const ArchiveGrid = ({ items, type }: ArchiveGridProps) => {
   const categories = ["all", ...Array.from(new Set(items.map(item => item.category)))];
 
   // Group by category and limit to 6
-  const filteredItems = selectedCategory === "all" 
-    ? items 
+  // Filter by category
+  const filteredItems = selectedCategory === "all"
+    ? items
     : items.filter(item => item.category === selectedCategory);
 
-  // Requirement: Each category only shows 6 cards
-  const groupedItems: Record<string, ContentData[]> = {};
-  items.forEach(item => {
-    if (!groupedItems[item.category]) groupedItems[item.category] = [];
-    if (groupedItems[item.category].length < 6) {
-      groupedItems[item.category].push(item);
-    }
-  });
+  // Pagination Logic
+  const [visibleCount, setVisibleCount] = useState(6);
 
-  const displayItems = selectedCategory === "all" 
-    ? Object.values(groupedItems).flat()
-    : groupedItems[selectedCategory] || [];
+  // Reset pagination when category changes
+  const handleCategoryChange = (cat: string) => {
+    setSelectedCategory(cat);
+    setVisibleCount(6);
+  };
+
+  const handleLoadMore = () => {
+    setVisibleCount(prev => prev + 6);
+  };
+
+  const visibleItems = filteredItems.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredItems.length;
 
   return (
     <div className="space-y-12">
@@ -66,12 +70,11 @@ export const ArchiveGrid = ({ items, type }: ArchiveGridProps) => {
         {categories.map(cat => (
           <button
             key={cat}
-            onClick={() => setSelectedCategory(cat)}
-            className={`px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border transition-all ${
-              selectedCategory === cat 
-                ? "bg-primary border-primary text-black shadow-[0_0_20px_rgba(0,240,255,0.3)]" 
+            onClick={() => handleCategoryChange(cat)}
+            className={`px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border transition-all ${selectedCategory === cat
+                ? "bg-primary border-primary text-black shadow-[0_0_20px_rgba(0,240,255,0.3)]"
                 : "bg-white/5 border-white/10 text-white/40 hover:border-white/20 hover:text-white"
-            }`}
+              }`}
           >
             {cat === "all" ? t("all") : t(`categories.${cat}`)}
           </button>
@@ -81,7 +84,7 @@ export const ArchiveGrid = ({ items, type }: ArchiveGridProps) => {
       {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" style={{ perspective: "1500px" }}>
         <AnimatePresence mode="popLayout">
-          {displayItems.map((item) => (
+          {visibleItems.map((item) => (
             <motion.div
               key={item.slug}
               layout
@@ -90,12 +93,12 @@ export const ArchiveGrid = ({ items, type }: ArchiveGridProps) => {
               exit={{ opacity: 0, scale: 0.9 }}
               onMouseMove={(e) => handleMouseMove(e, item.slug)}
               onMouseLeave={handleMouseLeave}
-              style={{ 
-                rotateX: hoveredId === item.slug ? rotateX : 0, 
+              style={{
+                rotateX: hoveredId === item.slug ? rotateX : 0,
                 rotateY: hoveredId === item.slug ? rotateY : 0,
                 transformStyle: "preserve-3d"
               }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 rotateX: 10,
                 rotateY: 5,
@@ -114,8 +117,8 @@ export const ArchiveGrid = ({ items, type }: ArchiveGridProps) => {
                       exit={{ opacity: 0, scale: 1.1 }}
                       className="absolute inset-0 z-0"
                     >
-                      <img 
-                        src={item.image} 
+                      <img
+                        src={item.image}
                         alt={item.title}
                         className="w-full h-full object-cover"
                       />
@@ -124,7 +127,7 @@ export const ArchiveGrid = ({ items, type }: ArchiveGridProps) => {
                   )}
                 </AnimatePresence>
 
-                <div 
+                <div
                   className="absolute inset-0 p-10 flex flex-col justify-between z-20"
                   style={{ transform: "translateZ(50px)" }}
                 >
@@ -137,9 +140,29 @@ export const ArchiveGrid = ({ items, type }: ArchiveGridProps) => {
 
                   <div style={{ transform: "translateZ(30px)" }}>
                     <div className="flex gap-2 mb-4">
-                      <span className="text-[8px] font-bold uppercase tracking-widest px-2 py-1 bg-primary/10 text-primary rounded-lg border border-primary/20">
-                        {t(`categories.${item.category}`)}
-                      </span>
+                      {/* Filter tags */}
+                      {item.tags
+                        ?.filter(tag => tag && tag !== 'ARCHIVE.CATEGORIES.NULL')
+                        .slice(0, 2) // Maintain limit of 2 tags
+                        .map(tag => (
+                          <span key={tag} className="text-[8px] font-bold uppercase tracking-widest px-2 py-1 bg-primary/10 text-primary rounded-lg border border-primary/20">
+                            {tag}
+                          </span>
+                        ))}
+
+                      {/* Show Category if valid tag is missing or as supplement? 
+                          Original code used t(`categories.${item.category}`) here. 
+                          The user requested fix for "ARCHIVE.CATEGORIES.NULL" which implies `item.category` or tags issues.
+                          Let's stick to showing the Category from metadata as the fallback or primary badge 
+                          BUT check if it's the "NULL" one. 
+                          Wait, the screenshot showed "ARCHIVE.CATEGORIES.NULL" likely coming from `t('categories.' + item.category)`. 
+                          Let's conditionally render the category badge.
+                      */}
+                      {item.category && item.category !== 'null' && (
+                        <span className="text-[8px] font-bold uppercase tracking-widest px-2 py-1 bg-primary/10 text-primary rounded-lg border border-primary/20">
+                          {t(`categories.${item.category}`)}
+                        </span>
+                      )}
                     </div>
                     <h3 className="text-2xl font-black text-white mb-3 group-hover:text-primary transition-colors duration-300 tracking-tight">
                       {item.title}
@@ -147,7 +170,7 @@ export const ArchiveGrid = ({ items, type }: ArchiveGridProps) => {
                     <p className="text-white/40 text-xs font-medium leading-relaxed group-hover:text-white/70 transition-colors duration-300 line-clamp-3">
                       {item.description}
                     </p>
-                    
+
                     <div className="mt-8 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-primary opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-[-10px] group-hover:translate-x-0">
                       {type === "resources" ? "Get Resource" : "Read Article"} <ArrowUpRight className="w-4 h-4" />
                     </div>
@@ -162,6 +185,19 @@ export const ArchiveGrid = ({ items, type }: ArchiveGridProps) => {
           ))}
         </AnimatePresence>
       </div>
+
+      {hasMore && (
+        <div className="flex justify-center mt-16">
+          <motion.button
+            onClick={handleLoadMore}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-4 bg-white/5 border border-white/10 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-black transition-all"
+          >
+            {t("loadMore")}
+          </motion.button>
+        </div>
+      )}
 
       {displayItems.length === 0 && (
         <div className="py-20 text-center">

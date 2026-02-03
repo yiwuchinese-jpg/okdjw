@@ -13,14 +13,6 @@ interface ContentProps {
 
 export const Content = ({ tutorials }: ContentProps) => {
   const t = useTranslations("Content");
-  const [visibleCount, setVisibleCount] = useState(6);
-
-  const visibleTutorials = tutorials.slice(0, visibleCount);
-  const hasMore = visibleCount < tutorials.length;
-
-  const handleLoadMore = () => {
-    setVisibleCount(prev => prev + 6);
-  };
 
   return (
     <section className="bg-black pt-32">
@@ -29,7 +21,7 @@ export const Content = ({ tutorials }: ContentProps) => {
         {/* ... existing header code ... */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {visibleTutorials.map((post, index) => {
+          {tutorials.map((post, index) => {
             // Sanity posts don't have a 'type' field in the current query, defaulting them to 'blog' (articles)
             // If it has a type field (from markdown), use it.
             const typeLower = post.type?.toLowerCase() || 'blog';
@@ -79,19 +71,6 @@ export const Content = ({ tutorials }: ContentProps) => {
             );
           })}
         </div>
-
-        {hasMore && (
-          <div className="flex justify-center mt-16">
-            <motion.button
-              onClick={handleLoadMore}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white/5 border border-white/10 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary hover:text-black transition-all"
-            >
-              {t("loadMore")}
-            </motion.button>
-          </div>
-        )}
       </div>
 
 

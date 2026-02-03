@@ -26,9 +26,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const uniqueItems = Array.from(new Map(allItems.map(item => [item.slug, item])).values());
 
   // Sort by date and take latest 3
-  // Sort by date (descending)
+  // Sort by date and take latest 3
   const allContent = uniqueItems
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
 
   return (
     <main className="min-h-screen">
