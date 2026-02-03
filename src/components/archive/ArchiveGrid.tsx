@@ -72,8 +72,8 @@ export const ArchiveGrid = ({ items, type }: ArchiveGridProps) => {
             key={cat}
             onClick={() => handleCategoryChange(cat)}
             className={`px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border transition-all ${selectedCategory === cat
-                ? "bg-primary border-primary text-black shadow-[0_0_20px_rgba(0,240,255,0.3)]"
-                : "bg-white/5 border-white/10 text-white/40 hover:border-white/20 hover:text-white"
+              ? "bg-primary border-primary text-black shadow-[0_0_20px_rgba(0,240,255,0.3)]"
+              : "bg-white/5 border-white/10 text-white/40 hover:border-white/20 hover:text-white"
               }`}
           >
             {cat === "all" ? t("all") : t(`categories.${cat}`)}
@@ -199,7 +199,7 @@ export const ArchiveGrid = ({ items, type }: ArchiveGridProps) => {
         </div>
       )}
 
-      {displayItems.length === 0 && (
+      {filteredItems.length === 0 && (
         <div className="py-20 text-center">
           <p className="text-white/20 font-mono text-sm uppercase tracking-widest">{t("noContent")}</p>
         </div>
