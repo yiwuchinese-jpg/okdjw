@@ -27,14 +27,21 @@ export default async function ArchivePage({
     console.error("Failed to fetch Sanity content for archive:", e);
   }
 
-  // Merge and Deduplicate (Sanity takes precedence)
   const mergeContent = (sanity: any[], local: any[]) => {
     const map = new Map<string, any>();
     // 1. Add Sanity content (Source of Truth)
     sanity.forEach(item => map.set(item.slug, item));
-    // 2. Add Local content ONLY if not already present
+
+    // 2. Add Local content
     local.forEach(item => {
-      if (!map.has(item.slug)) {
+      if (map.has(item.slug)) {
+        // If Sanity item exists but has no image, try to use local image
+        const sanityItem = map.get(item.slug);
+        if (!sanityItem.image && item.image) {
+          map.set(item.slug, { ...sanityItem, image: item.image });
+        }
+      } else {
+        // If not in Sanity, add local item
         map.set(item.slug, item);
       }
     });

@@ -68,6 +68,17 @@ export default async function ArticleDetailPage({
     contentData = sanityData;
     const { extractTocFromSanity } = await import("@/lib/toc");
     tocItems = extractTocFromSanity(sanityData.body);
+    // 1.5 If Sanity data exists but missing image, try to fetch local markdown image
+    if (!sanityData.image) {
+      try {
+        const localData = await getContentData("blog", slug, locale);
+        if (localData?.image) {
+          contentData = { ...sanityData, image: localData.image };
+        }
+      } catch (ignored) {
+        // Local file might not exist, ignore
+      }
+    }
   } else {
     // 2. Fallback to Markdown
     try {
