@@ -48,7 +48,7 @@ async function translateText(text: string, targetLang: string): Promise<string> 
             messages: [
                 {
                     role: 'system',
-                    content: `You are a professional translator. Translate the following text to ${targetLang}. Only return the translated text, no explanations.`,
+                    content: `You are a professional translator. Translate the following English text to ${targetLang}. Only return the translated text, no explanations.`,
                 },
                 { role: 'user', content: text },
             ],
