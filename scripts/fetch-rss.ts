@@ -236,7 +236,7 @@ function markdownToBlocks(markdown: string): any[] {
 
         // Normal text
         // Simple split by ** for bold
-        const children = [];
+        const children: any[] = [];
         const parts = trimmed.split('**');
         parts.forEach((part, index) => {
             // Even index = normal, Odd index = bold
