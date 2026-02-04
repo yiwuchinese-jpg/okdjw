@@ -1,6 +1,5 @@
 import { createClient } from 'next-sanity';
 import dotenv from 'dotenv';
-import moment from 'moment';
 
 dotenv.config({ path: '.env.local' });
 
