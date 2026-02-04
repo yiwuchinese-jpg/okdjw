@@ -9,7 +9,7 @@ export async function getSanityArticles(locale: string): Promise<ContentData[]> 
     "date": publishedAt,
     tags,
     category,
-    "image": mainImage.asset->url,
+    "image": coalesce(mainImage.asset->url, fallbackImageUrl, image),
     description
   }`
   return client.fetch(query, { locale })
@@ -22,7 +22,7 @@ export async function getSanityResources(locale: string): Promise<ContentData[]>
     "date": _createdAt,
     tags,
     category,
-    "image": mainImage.asset->url,
+    "image": coalesce(mainImage.asset->url, fallbackImageUrl, image),
     description
   }`
   return client.fetch(query, { locale })
@@ -35,7 +35,8 @@ export async function getSanityContentData(type: 'post' | 'resource', slug: stri
     "date": publishedAt,
     tags,
     category,
-    "image": mainImage.asset->url,
+    category,
+    "image": coalesce(mainImage.asset->url, fallbackImageUrl, image),
     description,
     body,
     downloadUrl

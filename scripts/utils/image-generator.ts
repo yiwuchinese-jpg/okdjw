@@ -30,7 +30,28 @@ export async function generateImage({ prompt, slug, outputDir = PUBLIC_IMAGE_DIR
         return null;
     }
 
-    console.log(`🎨 Generating image for: ${slug}...`);
+    console.log(`🎨 Preparing image for: ${slug}...`);
+
+    // Check if file already exists
+    const filename = `${slug}.png`;
+    const imagePath = path.join(outputDir, filename);
+
+    if (fs.existsSync(imagePath)) {
+        console.log(`⏭️ Image already exists at ${imagePath}. Skipping generation.`);
+        // Return relative path logic
+        const publicIndex = imagePath.indexOf('/public/');
+        if (publicIndex !== -1) {
+            return imagePath.substring(publicIndex + 7);
+        }
+        return `/images/generated/${filename}`;
+    }
+
+    if (!API_KEY) {
+        console.error("❌ Skipping image generation: IMAGE_GEN_API_KEY not found in .env.local");
+        return null;
+    }
+
+    console.log(`🎨 Generating new image via AI...`);
 
     try {
         const response = await fetch(API_URL, {

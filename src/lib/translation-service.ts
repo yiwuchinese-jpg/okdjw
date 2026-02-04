@@ -100,6 +100,9 @@ export async function processDocumentTranslation(doc: any) {
                 title: await translateText(doc.title, lang.name),
                 description: doc.description ? await translateText(doc.description, lang.name) : undefined,
                 body: doc.body ? await secureTranslatePortableText(doc.body, lang.name) : undefined,
+                // Sync images
+                mainImage: doc.mainImage,
+                fallbackImageUrl: doc.fallbackImageUrl,
             };
 
             try {

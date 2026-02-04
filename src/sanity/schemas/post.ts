@@ -62,6 +62,12 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'fallbackImageUrl',
+      title: 'Fallback Image URL (Local/Generated)',
+      type: 'string',
+      hidden: true, // Hide from studio, used for technical fallback
+    }),
+    defineField({
       name: 'publishedAt',
       title: '发布日期',
       type: 'datetime',

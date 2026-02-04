@@ -331,7 +331,7 @@ async function main() {
         // Most "smart" schemas might have a separate url field or we repurpose one.
         // Let's look at `src/sanity/schemas/post.ts` if possible? I don't have it open.
         // I'll try to set `image: imagePath`.
-        image: imagePath
+        fallbackImageUrl: imagePath
     };
 
     // Check existing
