@@ -44,13 +44,13 @@ export const Projects = () => {
       id: "chineseyiwu",
       color: "bg-[#00f0ff]",
       link: "https://chineseyiwu.com",
-      image: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=80"
+      image: "/images/chineseyiwu.png"
     },
     {
       id: "buydiscoball",
       color: "bg-[#7000ff]",
       link: "https://buydiscoball.com",
-      image: "https://images.unsplash.com/photo-1574391884720-bbe3740e53d9?auto=format&fit=crop&w=1200&q=80"
+      image: "/images/buydiscoball.png"
     },
     {
       id: "ifan",
@@ -87,13 +87,13 @@ export const Projects = () => {
               key={index}
               onMouseMove={(e) => handleMouseMove(e, index)}
               onMouseLeave={handleMouseLeave}
-              style={{ 
-                rotateX: hoveredIndex === index ? rotateX : scrollTilt, 
+              style={{
+                rotateX: hoveredIndex === index ? rotateX : scrollTilt,
                 rotateY: hoveredIndex === index ? rotateY : 0,
                 transformStyle: "preserve-3d",
                 perspective: "1500px"
               }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.02,
                 rotateX: 5,
                 rotateY: 2,
@@ -105,8 +105,8 @@ export const Projects = () => {
               {/* Background Image with depth */}
               <div className="absolute inset-0 z-0 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 z-10" />
-                <motion.img 
-                  src={project.image} 
+                <motion.img
+                  src={project.image}
                   alt={t(`items.${project.id}.title`)}
                   style={{ transform: "translateZ(-50px) scale(1.1)" }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000"
@@ -114,7 +114,7 @@ export const Projects = () => {
               </div>
 
               {/* Project Card Content with Z-axis depth */}
-              <div 
+              <div
                 className="absolute inset-0 p-12 md:p-20 flex flex-col justify-between z-20"
                 style={{ transform: "translateZ(50px)" }}
               >
@@ -133,19 +133,19 @@ export const Projects = () => {
                   <p className="text-white/50 text-xl max-w-2xl leading-relaxed font-medium mb-12 group-hover:text-white/80 transition-colors drop-shadow-md">
                     {t(`items.${project.id}.description`)}
                   </p>
-                  
+
                   <div className="flex gap-6">
-                    <motion.a 
-                      href={project.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <motion.a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       whileHover={{ scale: 1.05, translateZ: 20 }}
                       whileTap={{ scale: 0.95 }}
                       className="flex items-center gap-4 px-10 py-5 bg-white text-black font-black rounded-full text-[10px] uppercase tracking-[0.2em] hover:bg-primary transition-all duration-300 shadow-[0_10px_30px_rgba(255,255,255,0.1)] hover:shadow-[0_10px_30px_rgba(0,240,255,0.3)]"
                     >
                       {t("viewLive")} <ExternalLink className="w-5 h-5" />
                     </motion.a>
-                    <motion.button 
+                    <motion.button
                       whileHover={{ scale: 1.05, borderColor: "#fff", translateZ: 20 }}
                       whileTap={{ scale: 0.95 }}
                       className="p-5 border border-white/10 rounded-full hover:bg-white/5 transition-all duration-300 backdrop-blur-md shadow-xl"

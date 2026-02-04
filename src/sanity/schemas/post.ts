@@ -60,6 +60,13 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alternative Text (SEO)',
+          type: 'string',
+        }),
+      ],
     }),
     defineField({
       name: 'fallbackImageUrl',

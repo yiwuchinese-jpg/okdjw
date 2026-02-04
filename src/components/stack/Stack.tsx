@@ -3,9 +3,9 @@
 import { motion, AnimatePresence, useMotionValue, useTransform, useScroll } from "framer-motion";
 import { useState, useRef } from "react";
 import { useTranslations } from "next-intl";
-import { 
-  TrendingUp, Code2, Palette, Globe, Cpu, 
-  BarChart3, Zap, ShieldCheck, Smartphone 
+import {
+  TrendingUp, Code2, Palette, Globe, Cpu,
+  BarChart3, Zap, ShieldCheck, Smartphone
 } from "lucide-react";
 
 export const Stack = () => {
@@ -46,32 +46,32 @@ export const Stack = () => {
     {
       id: "growth",
       icon: <TrendingUp />,
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+      image: "/images/stack-growth.jpg",
     },
     {
       id: "dev",
       icon: <Code2 />,
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
+      image: "/images/stack-dev.jpg",
     },
     {
       id: "ai",
       icon: <Cpu />,
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80",
+      image: "/images/stack-ai.jpg",
     },
     {
       id: "design",
       icon: <Palette />,
-      image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=800&q=80",
+      image: "/images/stack-design.jpg",
     },
     {
       id: "marketing",
       icon: <Globe />,
-      image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80",
+      image: "/images/stack-marketing.jpg",
     },
     {
       id: "analytics",
       icon: <BarChart3 />,
-      image: "https://images.unsplash.com/photo-1551288049-bbda6462f744?auto=format&fit=crop&w=800&q=80",
+      image: "/images/stack-analytics.jpg",
     },
   ];
 
@@ -79,7 +79,7 @@ export const Stack = () => {
     <section ref={targetRef} className="py-32 bg-black relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <div className="mb-20">
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             className="text-primary font-mono text-xs font-bold tracking-[0.5em] uppercase mb-4 block"
@@ -99,12 +99,12 @@ export const Stack = () => {
               key={skill.id}
               onMouseMove={(e) => handleMouseMove(e, skill.id)}
               onMouseLeave={handleMouseLeave}
-              style={{ 
-                rotateX: hoveredId === skill.id ? rotateX : scrollTilt, 
+              style={{
+                rotateX: hoveredId === skill.id ? rotateX : scrollTilt,
                 rotateY: hoveredId === skill.id ? rotateY : 0,
                 transformStyle: "preserve-3d"
               }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 rotateX: 10,
                 rotateY: 5,
@@ -125,8 +125,8 @@ export const Stack = () => {
                     exit={{ opacity: 0, scale: 1.1 }}
                     className="absolute inset-0 z-0"
                   >
-                    <img 
-                      src={skill.image} 
+                    <img
+                      src={skill.image}
                       alt={t(`skills.${skill.id}.title`)}
                       className="w-full h-full object-cover"
                     />
@@ -135,7 +135,7 @@ export const Stack = () => {
               </AnimatePresence>
 
               {/* Content */}
-              <div 
+              <div
                 className="absolute inset-0 p-10 flex flex-col justify-between z-20"
                 style={{ transform: "translateZ(50px)" }}
               >
@@ -156,7 +156,7 @@ export const Stack = () => {
                   <p className="text-white/40 text-sm font-medium leading-relaxed group-hover:text-white/70 transition-colors duration-300 line-clamp-3">
                     {t(`skills.${skill.id}.description`)}
                   </p>
-                  
+
                   <div className="mt-8 flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
                     {t.raw(`skills.${skill.id}.tags`).map((tag: string) => (
                       <span key={tag} className="text-[9px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 border border-primary/30 text-primary rounded-lg bg-primary/5 backdrop-blur-sm">
