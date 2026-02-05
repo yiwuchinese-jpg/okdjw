@@ -2,8 +2,8 @@ name: Daily RSS Digest
 
 on:
   schedule:
-    # Runs at 10:00 Beijing Time (02:00 UTC)
-    - cron: '0 2 * * *'
+    # Runs at 09:35 Beijing Time (01:35 UTC)
+    - cron: '35 1 * * *'
   workflow_dispatch: # Allows manual run
 
 jobs:
