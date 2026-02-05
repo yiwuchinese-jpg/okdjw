@@ -14,31 +14,36 @@ const CATEGORIES = [
     {
         name: 'Global Macro & Finance',
         sources: [
-            'https://www.cnbc.com/id/10000664/device/rss/rss.html'
+            'https://www.cnbc.com/id/10000664/device/rss/rss.html',
+            'https://www.investing.com/rss/market_quotes_11.rss'
         ]
     },
     {
         name: 'Global Logistics (Sea & Air)',
         sources: [
             'https://theloadstar.com/feed/',
-            'https://www.aircargonews.net/feed/'
+            'https://www.aircargonews.net/feed/',
+            'https://www.porttechnology.org/feed/'
         ]
     },
     {
         name: 'Trade Compliance & Sanctions',
         sources: [
-            'https://ofac.treasury.gov/recent-actions.xml'
+            'https://ofac.treasury.gov/recent-actions.xml',
+            'https://www.piers.com/blog/feed/'
         ]
     },
     {
         name: 'Regional Markets',
         sources: [
+            'https://www.arabnews.com/cat/4/rss.xml',
             'https://en.mercopress.com/rss/'
         ]
     },
     {
         name: 'E-commerce & Retail Trends',
         sources: [
+            'https://techcrunch.com/category/ecommerce/feed/',
             'https://www.retaildive.com/feeds/news/'
         ]
     }
