@@ -4,6 +4,10 @@ on:
   schedule:
     # Runs at 09:35 Beijing Time (01:35 UTC)
     - cron: '35 1 * * *'
+  push:
+    branches:
+      - main
+
   workflow_dispatch: # Allows manual run
 
 jobs:
