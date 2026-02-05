@@ -46,6 +46,8 @@ export async function generateMetadata({
   }
 }
 
+import { PortableText } from '@portabletext/react';
+
 export default async function ResourceDetailPage({
   params
 }: {
@@ -54,8 +56,21 @@ export default async function ResourceDetailPage({
   const { locale, slug } = await params;
   const t = await getTranslations("Archive");
 
+  let data: any = null;
+  let isSanity = false;
+
   try {
-    const data = await getContentData("resources", slug, locale);
+    // 1. Try Sanity first
+    const sanityData = await getSanityContentData('resource', slug, locale);
+    if (sanityData) {
+      data = sanityData;
+      isSanity = true;
+    } else {
+      // 2. Fallback to Markdown
+      data = await getContentData("resources", slug, locale);
+    }
+
+    if (!data) notFound();
 
     return (
       <main className="min-h-screen bg-black pt-40 pb-32">
@@ -69,13 +84,13 @@ export default async function ResourceDetailPage({
 
           <header className="mb-16">
             <div className="flex flex-wrap gap-4 mb-8">
-              {data.tags.map(tag => (
+              {data.tags?.map((tag: string) => (
                 <span key={tag} className="flex items-center gap-2 px-4 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-[10px] font-bold uppercase tracking-widest">
                   <Tag className="w-3 h-3" /> {tag}
                 </span>
               ))}
               <span className="flex items-center gap-2 px-4 py-1 bg-white/5 text-white/40 border border-white/10 rounded-full text-[10px] font-bold uppercase tracking-widest">
-                <Calendar className="w-3 h-3" /> {data.date}
+                <Calendar className="w-3 h-3" /> {new Date(data.date).toLocaleDateString()}
               </span>
             </div>
 
@@ -83,9 +98,15 @@ export default async function ResourceDetailPage({
               <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-tight">
                 {data.title}
               </h1>
-              <button className="flex items-center gap-3 px-8 py-4 bg-primary text-black font-black rounded-2xl text-xs uppercase tracking-[0.2em] shadow-[0_0_30px_rgba(0,240,255,0.3)] hover:scale-105 transition-all shrink-0">
-                <Download className="w-5 h-5" /> Download
-              </button>
+              {data.downloadUrl ? (
+                <a href={data.downloadUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-8 py-4 bg-primary text-black font-black rounded-2xl text-xs uppercase tracking-[0.2em] shadow-[0_0_30px_rgba(0,240,255,0.3)] hover:scale-105 transition-all shrink-0">
+                  <Download className="w-5 h-5" /> Download
+                </a>
+              ) : (
+                <button className="flex items-center gap-3 px-8 py-4 bg-primary text-black font-black rounded-2xl text-xs uppercase tracking-[0.2em] shadow-[0_0_30px_rgba(0,240,255,0.3)] hover:scale-105 transition-all shrink-0">
+                  <Download className="w-5 h-5" /> Download
+                </button>
+              )}
             </div>
 
             <p className="text-xl text-white/40 leading-relaxed font-medium italic border-l-4 border-primary/30 pl-8 py-2">
@@ -93,15 +114,18 @@ export default async function ResourceDetailPage({
             </p>
           </header>
 
-          <div
-            className="prose prose-invert prose-primary max-w-none 
+          <div className="prose prose-invert prose-primary max-w-none 
               prose-headings:font-black prose-headings:tracking-tighter prose-headings:uppercase
               prose-p:text-white/60 prose-p:leading-relaxed prose-p:text-lg
               prose-strong:text-white prose-strong:font-bold
               prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-              prose-img:rounded-3xl prose-img:border prose-img:border-white/10"
-            dangerouslySetInnerHTML={{ __html: data.contentHtml || "" }}
-          />
+              prose-img:rounded-3xl prose-img:border prose-img:border-white/10">
+            {isSanity ? (
+              <PortableText value={data.body} />
+            ) : (
+              <div dangerouslySetInnerHTML={{ __html: data.contentHtml || "" }} />
+            )}
+          </div>
         </div>
 
         {/* Background Decoration */}
