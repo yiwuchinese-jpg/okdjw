@@ -394,7 +394,7 @@ async function generateDailyBriefing() {
     const dateStr = new Date().toISOString().split('T')[0];
     const slug = `daily-trade-briefing-${dateStr}`;
     // Title Standard: Global Trade Daily Briefing - YYYY-MM-DD
-    const title = `【自动化测试】Global Trade Daily Briefing - ${dateStr}`;
+    const title = `Global Trade Daily Briefing - ${dateStr}`;
 
     console.log("🎨 Generating cover image...");
     const { generateImage } = await import("./utils/image-generator");
@@ -529,7 +529,7 @@ async function generateSELDaily() {
 
         const dateStr = today.toISOString().split('T')[0];
         // Title Standard: Search Engine Land Daily Update - YYYY-MM-DD
-        const title = `【自动化测试】Search Engine Land Daily Update - ${dateStr}`;
+        const title = `Search Engine Land Daily Update - ${dateStr}`;
         const slug = `search-engine-land-daily-update-${dateStr}`; // Keep legacy slug format or standard? Let's keep it but ensure title is standard.
 
         // Generate Image
