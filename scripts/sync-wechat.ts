@@ -225,8 +225,12 @@ async function main() {
             // This applies to BOTH Sanity (RSS) and Local files.
 
             // 1. Language Check: Must be Chinese
+            console.log(`Checking Post: "${post.title}" (Locale: ${post.locale}, Lang: ${post.language})`);
             const isChinese = post.locale === 'zh' || post.language === 'zh';
-            if (!isChinese) continue;
+            if (!isChinese) {
+                console.log(`   Skipping: Not Chinese`);
+                continue;
+            }
 
             // 2. Title Filter: Must match specific RSS keywords
             const isGlobalTrade = post.title?.includes('全球贸易');
