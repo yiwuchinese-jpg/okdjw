@@ -447,8 +447,8 @@ async function generateDailyBriefing() {
 }
 
 async function generateSELDaily() {
-    console.log("\n📰 Starting Search Engine Land Daily Update...");
-    const FEED_URL = "https://searchengineland.com/feed"; // Corrected URL
+    console.log("\n📰 Starting Search Engine Roundtable Daily Update...");
+    const FEED_URL = "http://feeds.seroundtable.com/SearchEngineRoundtable1"; // Switched to SER (FeedBurner) due to SEL 403 block
 
     try {
         const feed = await parser.parseURL(FEED_URL);
@@ -528,9 +528,9 @@ async function generateSELDaily() {
         }
 
         const dateStr = today.toISOString().split('T')[0];
-        // Title Standard: Search Engine Land Daily Update - YYYY-MM-DD
-        const title = `Search Engine Land Daily Update - ${dateStr}`;
-        const slug = `search-engine-land-daily-update-${dateStr}`; // Keep legacy slug format or standard? Let's keep it but ensure title is standard.
+        // Title Standard: Search Engine Roundtable Daily Update - YYYY-MM-DD
+        const title = `Search Engine Roundtable Daily Update - ${dateStr}`;
+        const slug = `search-engine-roundtable-daily-update-${dateStr}`;
 
         // Generate Image
         const { generateImage } = await import("./utils/image-generator");
