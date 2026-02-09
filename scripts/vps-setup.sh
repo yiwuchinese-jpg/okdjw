@@ -1,0 +1,71 @@
+#!/bin/bash
+
+# VPS Setup Script for OKDJW Automation
+# Usage: ./scripts/vps-setup.sh
+
+echo "🚀 Starting VPS Environment Setup..."
+
+# 1. Check for Node.js
+# 1. Check for Node.js
+if ! command -v node &> /dev/null; then
+    echo "⚠️ Node.js is not installed. Installing Node.js v20..."
+    
+    # Check for curl
+    if ! command -v curl &> /dev/null; then
+        echo "Installing curl..."
+        if command -v apt-get &> /dev/null; then
+            apt-get update && apt-get install -y curl
+        elif command -v yum &> /dev/null; then
+            yum install -y curl
+        fi
+    fi
+
+    # Install Node.js
+    if command -v apt-get &> /dev/null; then
+        curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+        apt-get install -y nodejs
+    elif command -v yum &> /dev/null; then
+        curl -fsSL https://rpm.nodesource.com/setup_20.x | bash -
+        yum install -y nodejs
+    else
+        echo "❌ Unsupported OS package manager. Please install Node.js manually."
+        exit 1
+    fi
+    
+    echo "✅ Node.js installed!"
+fi
+
+echo "✅ Node.js found: $(node -v)"
+
+# 2. Check for NPM/PNPM
+if ! command -v npm &> /dev/null; then
+    echo "❌ npm is not installed. Please install npm."
+    exit 1
+fi
+
+# 3. Install Dependencies
+echo "📦 Installing project dependencies..."
+npm ci
+# Or if using pnpm: pnpm install
+
+# 4. Check .env.local
+if [ ! -f .env.local ]; then
+    echo "⚠️ .env.local file not found!"
+    echo "👉 Please upload your .env.local file to this directory:"
+    echo "   $(pwd)/.env.local"
+else
+    echo "✅ .env.local found."
+fi
+
+# 5. Permissions
+chmod +x scripts/vps-run.sh
+
+echo "🎉 Setup Complete!"
+echo "-----------------------------------"
+echo "Next Steps:"
+echo "1. Ensure .env.local is populated with your secrets."
+echo "2. Get your VPS Public IP: curl ifconfig.me"
+echo "3. Add that IP to WeChat Official Account Whitelist."
+echo "4. Add to Crontab (Run every day at 08:00):"
+echo "   crontab -e"
+echo "   0 8 * * * $(pwd)/scripts/vps-run.sh >> $(pwd)/cron.log 2>&1"

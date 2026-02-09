@@ -16,27 +16,27 @@ export const About = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className="relative min-h-screen w-full flex items-center justify-center py-32 px-4 bg-black overflow-hidden"
     >
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
         {/* Left: Styled Image Placeholder */}
-        <motion.div 
+        <motion.div
           style={{ y }}
           className="relative aspect-[4/5] w-full max-w-md mx-auto bg-muted border border-white/10 overflow-hidden group rounded-2xl"
         >
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
           <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          
-          <img 
-            src="/images/me.JPG" 
+
+          <img
+            src="/images/me.JPG"
             alt="Justin Du"
             className="w-full h-full object-cover transition-all duration-700 scale-110 group-hover:scale-100"
           />
-          
+
           <div className="absolute bottom-10 left-10 z-20">
-            <motion.h3 
+            <motion.h3
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               className="text-4xl font-black text-white tracking-tighter"
@@ -48,7 +48,7 @@ export const About = () => {
         </motion.div>
 
         {/* Right: Content */}
-        <motion.div 
+        <motion.div
           style={{ opacity }}
           className="flex flex-col gap-12"
         >

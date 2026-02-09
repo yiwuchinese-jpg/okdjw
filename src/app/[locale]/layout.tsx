@@ -44,6 +44,14 @@ export async function generateMetadata({
       title: t('title'),
       description: t('description'),
       siteName: "OKdjw",
+      images: [
+        {
+          url: '/images/chineseyiwu.png',
+          width: 1200,
+          height: 630,
+          alt: 'OKdjw - Justin Du Portfolio',
+        }
+      ],
     },
     icons: {
       icon: '/icon.svg',

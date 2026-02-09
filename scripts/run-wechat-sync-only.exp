@@ -1,0 +1,7 @@
+#!/usr/bin/expect -f
+set timeout -1
+spawn ssh -o StrictHostKeyChecking=no root@107.172.71.233 "cd okdjw && npx tsx scripts/sync-wechat.ts"
+expect {
+    "password:" { send "I09FRzUl856qvTZ5yt\r" }
+}
+expect eof

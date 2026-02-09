@@ -3,7 +3,7 @@ import { getAllContent } from '@/lib/markdown';
 import { getSanityArticles, getSanityResources } from '@/sanity/lib/queries';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://okdjw.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://okdjw.com';
   const locales = ['zh', 'en'];
   const contentTypes = ['blog', 'resources', 'tutorials'] as const;
 

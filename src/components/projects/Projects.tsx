@@ -56,7 +56,7 @@ export const Projects = () => {
       id: "ifan",
       color: "bg-[#ff00c8]",
       link: "https://ifanholding.com",
-      image: "https://images.unsplash.com/photo-1551288049-bbda6462f744?auto=format&fit=crop&w=1200&q=80"
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80"
     },
   ];
 
@@ -107,7 +107,10 @@ export const Projects = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/90 z-10" />
                 <motion.img
                   src={project.image}
-                  alt={t(`items.${project.id}.title`)}
+                  alt={t(`items.${project.id}.title`) + " - Project Preview"}
+                  loading="lazy"
+                  width={1200}
+                  height={800}
                   style={{ transform: "translateZ(-50px) scale(1.1)" }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000"
                 />

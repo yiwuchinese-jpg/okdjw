@@ -75,8 +75,8 @@ export const LocaleSwitcher = () => {
                   key={l.code}
                   onClick={() => switchLocale(l.code)}
                   className={`flex items-center justify-between px-4 py-2.5 rounded-xl text-sm transition-all group ${locale === l.code
-                      ? "bg-primary/20 text-primary"
-                      : "text-white/70 hover:bg-white/5 hover:text-white"
+                    ? "bg-primary/20 text-primary"
+                    : "text-white/70 hover:bg-white/5 hover:text-white"
                     }`}
                 >
                   <div className="flex flex-col items-start">
