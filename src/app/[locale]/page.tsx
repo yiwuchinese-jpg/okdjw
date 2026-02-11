@@ -5,6 +5,33 @@ import { Projects } from "@/components/projects/Projects";
 import { Content } from "@/components/content/Content";
 import { getAllContent } from "@/lib/markdown";
 
+import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Metadata' });
+
+  return {
+    alternates: {
+      canonical: `https://okdjw.com/${locale}`,
+      languages: {
+        'zh': 'https://okdjw.com/zh',
+        'en': 'https://okdjw.com/en',
+        'es': 'https://okdjw.com/es',
+        'ru': 'https://okdjw.com/ru',
+        'ar': 'https://okdjw.com/ar',
+        'de': 'https://okdjw.com/de',
+        'fr': 'https://okdjw.com/fr',
+      },
+    },
+  };
+}
+
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
 

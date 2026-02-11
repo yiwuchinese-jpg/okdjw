@@ -61,18 +61,6 @@ export async function generateMetadata({
       title: t('title'),
       description: t('description'),
     },
-    alternates: {
-      canonical: `https://okdjw.com/${locale}`,
-      languages: {
-        'zh': 'https://okdjw.com/zh',
-        'en': 'https://okdjw.com/en',
-        'es': 'https://okdjw.com/es',
-        'ru': 'https://okdjw.com/ru',
-        'ar': 'https://okdjw.com/ar',
-        'de': 'https://okdjw.com/de',
-        'fr': 'https://okdjw.com/fr',
-      },
-    },
     robots: {
       index: true,
       follow: true,
