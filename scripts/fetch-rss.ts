@@ -762,30 +762,51 @@ async function generate36KrDaily() {
             console.log(`- Summarizing 36Kr article: ${item.title}`);
 
             // "Simple Vernacular" Prompt
+            // "Simple Vernacular" Prompt - Request JSON for Title + Summary
             const itemPrompt = `
 You are a helpful assistant explaining a news headline to a regular non-tech person (like a 50-year-old uncle).
 Use the simplest, most vernacular English.
+Convert the title to English.
 Explain WHAT happened and WHY it matters in 1 short sentence.
 Do not use corporate jargon.
-Article: ${item.title}
-Snippet: ${item.contentSnippet || item.content || "No content"}
+
+Input Article Title: ${item.title}
+Input Snippet: ${item.contentSnippet || item.content || "No content"}
+
+Return a JSON object with two fields:
+{
+  "englishTitle": "The translated and simplified title in English",
+  "englishSummary": "The vernacular explanation in English"
+}
 `;
             const itemRes = await openai.chat.completions.create({
                 model: "deepseek-chat",
                 messages: [{ role: "user", content: itemPrompt }],
+                response_format: { type: "json_object" }
             });
-            const summary = itemRes.choices[0].message.content;
+
+            let englishTitle = item.title;
+            let englishSummary = "";
+
+            try {
+                const json = JSON.parse(itemRes.choices[0].message.content || "{}");
+                englishTitle = json.englishTitle || item.title;
+                englishSummary = json.englishSummary || "";
+            } catch (e) {
+                console.error("Failed to parse JSON response for item:", item.title);
+                englishSummary = itemRes.choices[0].message.content || "";
+            }
 
             blocks.push({
                 _type: 'block',
                 style: 'h3',
-                children: [{ _type: 'span', text: item.title }]
+                children: [{ _type: 'span', text: englishTitle }]
             });
 
             blocks.push({
                 _type: 'block',
                 style: 'normal',
-                children: [{ _type: 'span', text: summary || "No summary available." }]
+                children: [{ _type: 'span', text: englishSummary || "No summary available." }]
             });
         }
 
