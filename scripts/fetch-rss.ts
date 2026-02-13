@@ -608,8 +608,11 @@ main().catch(console.error);
 async function generateGitHubTrendingDaily() {
     console.log("\n🐙 Starting GitHub Trending Daily Update...");
     // RSSHub Base URL
-    const RSSHUB_BASE = process.env.RSSHUB_BASE_URL || "https://rsshub.app";
-    const FEED_URL = `${RSSHUB_BASE}/github/trending/daily`;
+    // const RSSHUB_BASE = process.env.RSSHUB_BASE_URL || "https://rsshub.app";
+    // const FEED_URL = `${RSSHUB_BASE}/github/trending/daily`;
+
+    // Switch to direct static feed to avoid RSSHub blocking issues
+    const FEED_URL = "https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml";
 
     try {
         const feed = await parser.parseURL(FEED_URL);
@@ -725,8 +728,12 @@ Description: ${item.contentSnippet || item.content || "No description"}
 
 async function generate36KrDaily() {
     console.log("\n🔥 Starting 36Kr Daily Hot List Update...");
-    const RSSHUB_BASE = process.env.RSSHUB_BASE_URL || "https://rsshub.app";
-    const FEED_URL = `${RSSHUB_BASE}/36kr/hot-list/daily`;
+    // RSSHub Base URL
+    // const RSSHUB_BASE = process.env.RSSHUB_BASE_URL || "https://rsshub.app";
+    // const FEED_URL = `${RSSHUB_BASE}/36kr/hot-list/daily`;
+
+    // Switch to official 36Kr feed
+    const FEED_URL = "https://36kr.com/feed";
 
     try {
         const feed = await parser.parseURL(FEED_URL);

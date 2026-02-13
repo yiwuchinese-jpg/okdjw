@@ -37,6 +37,7 @@ async function main() {
         }
 
         console.log("🎉 Translation Sync Complete!");
+        process.exit(0);
 
     } catch (err) {
         console.error("❌ Translation Sync Failed:", err);

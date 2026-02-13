@@ -7,7 +7,8 @@
 cd "$(dirname "$0")/.."
 
 # Load node environment if necessary (sometimes cron doesn't have same path)
-# export PATH=$PATH:/usr/local/bin
+# Load node environment if necessary (sometimes cron doesn't have same path)
+export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 echo "Starting Daily Automation: $(date)"
 

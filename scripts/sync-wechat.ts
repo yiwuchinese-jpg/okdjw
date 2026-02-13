@@ -176,8 +176,9 @@ async function main() {
         console.log("✅ Got WeChat Access Token.");
 
         // --- SOURCE 1: Sanity CMS (News & Automated Content) ---
-        const startOfDay = new Date().toISOString().split('T')[0] + "T00:00:00.000Z";
-        const query = `*[_type == "post" && publishedAt >= "${startOfDay}"]`;
+        // Look back 12 hours to catch the just-generated article, avoiding timezone "start of day" issues.
+        const lookback = new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString();
+        const query = `*[_type == "post" && publishedAt >= "${lookback}"]`;
         const sanityPosts = await client.fetch(query);
         console.log(`Found ${sanityPosts.length} matches in Sanity.`);
 
@@ -232,12 +233,16 @@ async function main() {
                 continue;
             }
 
-            // 2. Title Filter: Must match specific RSS keywords
+            // 2. Title Filter: Must match specific RSS keywords OR be a designated topic
             const isGlobalTrade = post.title?.includes('全球贸易');
             const isSEL = post.title?.includes('搜索引擎');
+            const isYiwu = post.title?.includes('义乌');
+            const isAI = post.title?.includes('AI') || post.title?.includes('智能体');
+            const isSupplyChain = post.title?.includes('供应链');
+            const isGreen = post.title?.includes('绿色');
 
-            if (!isGlobalTrade && !isSEL) {
-                console.log(`Skipping Post: ${post.title} (Not in allowed RSS list)`);
+            if (!isGlobalTrade && !isSEL && !isYiwu && !isAI && !isSupplyChain && !isGreen) {
+                console.log(`Skipping Post: ${post.title} (Not in allowed RSS/Topic list)`);
                 continue;
             }
 
@@ -317,6 +322,8 @@ async function main() {
                 console.log(`   ✅ Draft created! MediaId: ${data.media_id}`);
             }
         }
+        console.log("✅ WeChat Sync Finished.");
+        process.exit(0);
 
     } catch (error) {
         console.error("❌ WeChat Sync Error:", error);

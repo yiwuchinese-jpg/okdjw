@@ -1,7 +1,28 @@
 #!/usr/bin/expect -f
 set timeout -1
-spawn ssh -o StrictHostKeyChecking=no root@107.172.71.233 "cd okdjw && npx tsx scripts/sync-translations.ts && npx tsx scripts/sync-wechat.ts"
+set VPS_IP "107.172.71.233"
+set VPS_USER "root"
+set VPS_PASS "I09FRzUl856qvTZ5yt"
+
+# 1. Upload the modified script
+spawn scp -o StrictHostKeyChecking=no scripts/sync-wechat.ts $VPS_USER@$VPS_IP:/root/okdjw/scripts/
 expect {
-    "password:" { send "I09FRzUl856qvTZ5yt\r" }
+    "yes/no" { send "yes\r"; exp_continue }
+    "password:" { send "$VPS_PASS\r" }
 }
+expect eof
+
+# 2. Upload .env.local just in case (to ensure secrets are there)
+spawn scp -o StrictHostKeyChecking=no .env.local $VPS_USER@$VPS_IP:/root/okdjw/
+expect {
+    "password:" { send "$VPS_PASS\r" }
+}
+expect eof
+
+# 3. Run the script on VPS
+spawn ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_IP "cd /root/okdjw && npx tsx scripts/sync-wechat.ts"
+expect {
+    "password:" { send "$VPS_PASS\r" }
+}
+# Expect the script to output logs, wait for completion or prompt
 expect eof
