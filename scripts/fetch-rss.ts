@@ -61,7 +61,17 @@ const parser = new Parser({
             ['content:encoded', 'contentEncoded'],
         ],
     },
+    timeout: 10000,
 });
+
+// Configure Proxy if available
+import { HttpsProxyAgent } from 'https-proxy-agent';
+const proxyUrl = process.env.HTTP_PROXY || process.env.HTTPS_PROXY;
+if (proxyUrl) {
+    console.log(`🔌 Using Proxy: ${proxyUrl}`);
+    const agent = new HttpsProxyAgent(proxyUrl);
+    (parser as any).setAgent(agent);
+}
 
 const token = process.env.SANITY_API_TOKEN;
 if (!token) {
@@ -268,7 +278,14 @@ async function main() {
     // 2. Search Engine Land Briefing
     await generateSELDaily();
 
+    // 3. GitHub Trending Daily
+    await generateGitHubTrendingDaily();
+
+    // 4. 36Kr Daily Hot List
+    await generate36KrDaily();
+
     console.log("✅ All RSS Tasks Finished.");
+    process.exit(0);
 }
 
 async function generateDailyBriefing() {
@@ -587,3 +604,257 @@ async function generateSELDaily() {
 }
 
 main().catch(console.error);
+
+async function generateGitHubTrendingDaily() {
+    console.log("\n🐙 Starting GitHub Trending Daily Update...");
+    // RSSHub Base URL
+    const RSSHUB_BASE = process.env.RSSHUB_BASE_URL || "https://rsshub.app";
+    const FEED_URL = `${RSSHUB_BASE}/github/trending/daily`;
+
+    try {
+        const feed = await parser.parseURL(FEED_URL);
+        // GitHub Trending feed usually contains the top repos for the day.
+        // We'll take the top 10.
+        const recentItems = feed.items.slice(0, 10);
+
+        console.log(`Found ${recentItems.length} trending repos from GitHub.`);
+
+        if (recentItems.length === 0) {
+            console.log("No new items to process.");
+            return;
+        }
+
+        const blocks: any[] = [];
+        const today = new Date();
+        const dateStr = today.toISOString().split('T')[0];
+
+        // Intro
+        blocks.push({
+            _type: 'block',
+            style: 'normal',
+            children: [{ _type: 'span', text: `GitHub Daily Trending for ${dateStr}. Top repositories of the day explained in simple terms.` }]
+        });
+
+        // Loop through items
+        for (const item of recentItems) {
+            console.log(`- Summarizing repo: ${item.title}`);
+
+            // "Simple Vernacular" Prompt
+            const itemPrompt = `
+You are a tech-savvy friend explaining a GitHub project to a non-tech 50-year-old uncle.
+Use the simplest, most vernacular English.
+Explain WHAT this project is and WHAT IT IS USED FOR (focus on the "used for" part).
+Keep it short (1-2 sentences).
+Do not use technical jargon if possible, or explain it simply if necessary.
+Style: Casual, helpful, easy to understand.
+
+Project: ${item.title}
+Description: ${item.contentSnippet || item.content || "No description"}
+`;
+            const itemRes = await openai.chat.completions.create({
+                model: "deepseek-chat",
+                messages: [{ role: "user", content: itemPrompt }],
+            });
+            const summary = itemRes.choices[0].message.content;
+
+            // Title (Repo Name)
+            blocks.push({
+                _type: 'block',
+                style: 'h3',
+                children: [{ _type: 'span', text: item.title }]
+            });
+
+            // Summary
+            blocks.push({
+                _type: 'block',
+                style: 'normal',
+                children: [{ _type: 'span', text: summary || "No summary available." }]
+            });
+        }
+
+        const title = `GitHub Daily Trending - ${dateStr}`;
+        const slug = `github-trending-daily-${dateStr}`;
+
+        // Feature Image logic
+        let imageAssetId = null;
+        console.log("🎨 Generating cover image for GitHub Trending...");
+        const { generateImage } = await import("./utils/image-generator");
+        const relativePath = await generateImage({ prompt: `GitHub Open Source Code Technology Trending Coding Octocat ${dateStr}`, slug });
+
+        if (relativePath) {
+            const cleanRelative = relativePath.startsWith('/') ? relativePath.substring(1) : relativePath;
+            const absolutePath = path.join(process.cwd(), "public", cleanRelative);
+            if (fs.existsSync(absolutePath)) {
+                const fileStream = fs.createReadStream(absolutePath);
+                const asset = await client.assets.upload('image', fileStream, { filename: path.basename(absolutePath) });
+                if (asset) {
+                    imageAssetId = asset._id;
+                }
+            }
+        }
+
+        const doc: any = {
+            _type: 'post',
+            title,
+            slug: { _type: 'slug', current: slug },
+            locale: 'en',
+            publishedAt: new Date().toISOString(),
+            description: `Daily GitHub Trending repositories explained in simple terms for ${dateStr}.`,
+            body: blocks,
+            mainImage: imageAssetId ? {
+                _type: 'image',
+                asset: { _type: 'reference', _ref: imageAssetId },
+                alt: title
+            } : undefined,
+            fallbackImageUrl: relativePath
+        };
+
+        const existing = await client.fetch(`*[_type == "post" && slug.current == "${slug}"][0]`);
+        if (existing) {
+            console.log(`Update ${slug} already exists. Updating...`);
+            await client.patch(existing._id).set(doc).commit();
+        } else {
+            await client.create(doc);
+            console.log(`Created ${slug}`);
+        }
+
+    } catch (err) {
+        console.error("❌ Error generating GitHub Trending:", err);
+    }
+}
+
+async function generate36KrDaily() {
+    console.log("\n🔥 Starting 36Kr Daily Hot List Update...");
+    const RSSHUB_BASE = process.env.RSSHUB_BASE_URL || "https://rsshub.app";
+    const FEED_URL = `${RSSHUB_BASE}/36kr/hot-list/daily`;
+
+    try {
+        const feed = await parser.parseURL(FEED_URL);
+        // 36Kr Hot List
+        const recentItems = feed.items.slice(0, 15); // Top 15
+
+        console.log(`Found ${recentItems.length} hot articles from 36Kr.`);
+
+        if (recentItems.length === 0) {
+            console.log("No new items to process.");
+            return;
+        }
+
+        const blocks: any[] = [];
+        const today = new Date();
+        const dateStr = today.toISOString().split('T')[0];
+
+        // Intro
+        blocks.push({
+            _type: 'block',
+            style: 'normal',
+            children: [{ _type: 'span', text: `36Kr Daily Hot List for ${dateStr}. Tech and business news explained simply.` }]
+        });
+
+        for (const item of recentItems) {
+            console.log(`- Summarizing 36Kr article: ${item.title}`);
+
+            // "Simple Vernacular" Prompt
+            const itemPrompt = `
+You are a helpful assistant explaining a news headline to a regular non-tech person (like a 50-year-old uncle).
+Use the simplest, most vernacular English.
+Explain WHAT happened and WHY it matters in 1 short sentence.
+Do not use corporate jargon.
+Article: ${item.title}
+Snippet: ${item.contentSnippet || item.content || "No content"}
+`;
+            const itemRes = await openai.chat.completions.create({
+                model: "deepseek-chat",
+                messages: [{ role: "user", content: itemPrompt }],
+            });
+            const summary = itemRes.choices[0].message.content;
+
+            blocks.push({
+                _type: 'block',
+                style: 'h3',
+                children: [{ _type: 'span', text: item.title }]
+            });
+
+            blocks.push({
+                _type: 'block',
+                style: 'normal',
+                children: [{ _type: 'span', text: summary || "No summary available." }]
+            });
+        }
+
+        const title = `36Kr Daily Hot List - ${dateStr}`;
+        const slug = `36kr-daily-hot-list-${dateStr}`;
+
+        // 36Kr image handling
+        let headerImageUrl = null;
+        for (const item of recentItems) {
+            const img = extractImage(item);
+            if (img && img.startsWith('http')) {
+                headerImageUrl = img;
+                break;
+            }
+        }
+
+        let imageAssetId = null;
+        let relativePath = null;
+
+        if (headerImageUrl) {
+            console.log(`🖼️ Found image from RSS: ${headerImageUrl}, attempting to download and upload...`);
+            try {
+                const resp = await fetch(headerImageUrl);
+                if (resp.ok) {
+                    const arrayBuffer = await resp.arrayBuffer();
+                    const buffer = Buffer.from(arrayBuffer);
+                    const asset = await client.assets.upload('image', buffer, { filename: `rss-image-${slug}.jpg` });
+                    if (asset) imageAssetId = asset._id;
+                }
+            } catch (e) {
+                console.error("Failed to download/upload RSS image, falling back to generated image.", e);
+            }
+        }
+
+        if (!imageAssetId) {
+            console.log("🎨 No valid RSS image found or upload failed. Generating cover image...");
+            const { generateImage } = await import("./utils/image-generator");
+            relativePath = await generateImage({ prompt: `Technology Business News China 36Kr ${dateStr}`, slug });
+
+            if (relativePath) {
+                const cleanRelative = relativePath.startsWith('/') ? relativePath.substring(1) : relativePath;
+                const absolutePath = path.join(process.cwd(), "public", cleanRelative);
+                if (fs.existsSync(absolutePath)) {
+                    const fileStream = fs.createReadStream(absolutePath);
+                    const asset = await client.assets.upload('image', fileStream, { filename: path.basename(absolutePath) });
+                    if (asset) imageAssetId = asset._id;
+                }
+            }
+        }
+
+        const doc: any = {
+            _type: 'post',
+            title,
+            slug: { _type: 'slug', current: slug },
+            locale: 'en',
+            publishedAt: new Date().toISOString(),
+            description: `Daily 36Kr Hot List explained in simple terms for ${dateStr}.`,
+            body: blocks,
+            mainImage: imageAssetId ? {
+                _type: 'image',
+                asset: { _type: 'reference', _ref: imageAssetId },
+                alt: title
+            } : undefined,
+            fallbackImageUrl: relativePath
+        };
+
+        const existing = await client.fetch(`*[_type == "post" && slug.current == "${slug}"][0]`);
+        if (existing) {
+            console.log(`Update ${slug} already exists. Updating...`);
+            await client.patch(existing._id).set(doc).commit();
+        } else {
+            await client.create(doc);
+            console.log(`Created ${slug}`);
+        }
+
+    } catch (err) {
+        console.error("❌ Error generating 36Kr Daily:", err);
+    }
+}
