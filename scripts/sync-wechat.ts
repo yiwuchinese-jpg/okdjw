@@ -21,6 +21,9 @@ import { remark } from 'remark';
 import html from 'remark-html';
 import remarkGfm from 'remark-gfm';
 import * as cheerio from 'cheerio';
+import { execSync } from 'child_process';
+import os from 'os';
+import crypto from 'crypto';
 
 // Load environment variables
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
@@ -265,14 +268,39 @@ function convertBlocksToHtml(blocks: any[]) {
     return html;
 }
 
-// Convert Raw Markdown to HTML (using remark)
+// Convert Raw Markdown to HTML (using remark or md2wechat-skill)
 async function convertRawMarkdownToHtml(markdown: string) {
+    console.log("   Attempting to use md2wechat-skill for layout generation...");
+    try {
+        const tmpDir = os.tmpdir();
+        const sessionId = crypto.randomUUID();
+        const mdPath = path.join(tmpDir, `temp_${sessionId}.md`);
+        const htmlPath = path.join(tmpDir, `temp_${sessionId}.html`);
+
+        // Write the raw markdown
+        fs.writeFileSync(mdPath, markdown, 'utf-8');
+
+        // Execute md2wechat. We use API mode and elegant-blue theme for a professional look.
+        execSync(`md2wechat convert "${mdPath}" -o "${htmlPath}" --mode api --theme elegant-blue`, { stdio: 'pipe' });
+
+        const styledHtml = fs.readFileSync(htmlPath, 'utf-8');
+        console.log("   ✅ Successfully applied md2wechat theme.");
+
+        // Clean up
+        if (fs.existsSync(mdPath)) fs.unlinkSync(mdPath);
+        if (fs.existsSync(htmlPath)) fs.unlinkSync(htmlPath);
+
+        return styledHtml + `<p style="margin-top: 40px; color: #999; font-size: 13px; text-align: center;">Original Article • OKDJW.COM</p>`;
+    } catch (e) {
+        console.log("   ⚠️ md2wechat-skill failed or missing. Falling back to native remark conversion.", (e as any).message);
+    }
+
+    // --- FALLBACK TO NATIVE LOGIC ---
     // 1. Use remark to convert to HTML (disable sanitize to allow raw HTML like <video>)
     const result = await remark().use(remarkGfm).use(html, { sanitize: false }).process(markdown);
     let rawHtml = result.toString();
 
     // 2. Apply WeChat Styles (Inline Styles)
-
     const styles = {
         container: "font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; line-height: 1.75; color: #333; padding: 20px 16px; background-color: #fff;",
         h1: "font-size: 24px; font-weight: 600; color: #000; margin-bottom: 24px; text-align: center;",

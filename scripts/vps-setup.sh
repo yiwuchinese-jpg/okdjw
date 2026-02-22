@@ -48,6 +48,15 @@ echo "📦 Installing project dependencies..."
 npm ci
 # Or if using pnpm: pnpm install
 
+# Install md2wechat binary for WeChat Sync
+if ! command -v md2wechat &> /dev/null; then
+    echo "📦 Installing md2wechat tool..."
+    curl -Lo md2wechat https://github.com/geekjourneyx/md2wechat-skill/releases/latest/download/md2wechat-linux-amd64
+    chmod +x md2wechat
+    mv md2wechat /usr/local/bin/
+    echo "✅ md2wechat installed!"
+fi
+
 # 4. Check .env.local
 if [ ! -f .env.local ]; then
     echo "⚠️ .env.local file not found!"
