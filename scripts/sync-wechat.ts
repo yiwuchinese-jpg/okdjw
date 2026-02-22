@@ -267,8 +267,8 @@ function convertBlocksToHtml(blocks: any[]) {
 
 // Convert Raw Markdown to HTML (using remark)
 async function convertRawMarkdownToHtml(markdown: string) {
-    // 1. Use remark to convert to HTML
-    const result = await remark().use(remarkGfm).use(html).process(markdown);
+    // 1. Use remark to convert to HTML (disable sanitize to allow raw HTML like <video>)
+    const result = await remark().use(remarkGfm).use(html, { sanitize: false }).process(markdown);
     let rawHtml = result.toString();
 
     // 2. Apply WeChat Styles (Inline Styles)
@@ -280,7 +280,8 @@ async function convertRawMarkdownToHtml(markdown: string) {
         h3: "font-size: 18px; font-weight: 600; color: #333; margin-top: 24px; margin-bottom: 12px; line-height: 1.4;",
         p: "font-size: 16px; margin-bottom: 16px; text-align: justify; color: #4a4a4a;",
         blockquote: "background: #f5f7fa; border-left: 4px solid #007aff; padding: 16px; margin: 24px 0; color: #555; font-size: 15px; border-radius: 8px; line-height: 1.6;",
-        ul: "margin-bottom: 16px; padding-left: 20px;",
+        ul: "margin-bottom: 16px; padding-left: 20px; list-style-type: disc;",
+        ol: "margin-bottom: 16px; padding-left: 20px; list-style-type: decimal;",
         li: "margin-bottom: 8px; font-size: 16px; line-height: 1.6;",
         strong: "font-weight: 600; color: #000;"
     };
@@ -296,6 +297,7 @@ async function convertRawMarkdownToHtml(markdown: string) {
         .replace(/<p>/g, `<p style="${styles.p}">`)
         .replace(/<blockquote>/g, `<blockquote style="${styles.blockquote}">`)
         .replace(/<ul>/g, `<ul style="${styles.ul}">`)
+        .replace(/<ol>/g, `<ol style="${styles.ol}">`)
         .replace(/<li>/g, `<li style="${styles.li}">`)
         .replace(/<strong>/g, `<strong style="${styles.strong}">`);
 
