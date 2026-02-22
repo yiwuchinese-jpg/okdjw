@@ -1,0 +1,14 @@
+#!/usr/bin/expect -f
+set timeout -1
+
+# VPS Credentials
+set VPS_IP "107.172.71.233"
+set VPS_USER "root"
+set VPS_PASS "I09FRzUl856qvTZ5yt"
+
+# Upload file
+spawn scp -o StrictHostKeyChecking=no scripts/sync-wechat.ts $VPS_USER@$VPS_IP:~/okdjw/scripts/
+expect {
+    "password:" { send "$VPS_PASS\r" }
+}
+expect eof

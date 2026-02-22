@@ -1,0 +1,8 @@
+#!/usr/bin/expect -f
+set timeout -1
+spawn ssh -o StrictHostKeyChecking=no root@107.172.71.233 "cd /root/okdjw && ./scripts/vps-run.sh"
+expect {
+    "yes/no" { send "yes\r"; exp_continue }
+    "password:" { send "I09FRzUl856qvTZ5yt\r" }
+}
+expect eof

@@ -1,0 +1,9 @@
+#!/usr/bin/expect -f
+set timeout -1
+# Remove old cron job and add new one
+spawn ssh -o StrictHostKeyChecking=no root@107.172.71.233 "(crontab -l | grep -v 'vps-run.sh'; echo '0 12 * * * /root/okdjw/scripts/vps-run.sh >> /root/okdjw/cron.log 2>&1') | crontab -"
+expect {
+    "yes/no" { send "yes\r"; exp_continue }
+    "password:" { send "I09FRzUl856qvTZ5yt\r" }
+}
+expect eof

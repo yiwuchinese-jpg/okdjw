@@ -1,0 +1,23 @@
+#!/usr/bin/expect -f
+set timeout -1
+
+# VPS Credentials
+set VPS_IP "107.172.71.233"
+set VPS_USER "root"
+set VPS_PASS "I09FRzUl856qvTZ5yt"
+
+# Connect and run sync script
+spawn ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_IP
+expect {
+    "password:" { send "$VPS_PASS\r" }
+}
+
+expect "#"
+send "cd okdjw\r"
+expect "#"
+send "export PATH=\$PATH:/root/.nvm/versions/node/v20.20.0/bin\r"
+expect "#"
+send "npx tsx scripts/sync-wechat.ts\r"
+expect "#"
+send "exit\r"
+expect eof
