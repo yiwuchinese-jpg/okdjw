@@ -19,6 +19,8 @@ import { openAsBlob } from 'node:fs';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
+import remarkGfm from 'remark-gfm';
+import * as cheerio from 'cheerio';
 
 // Load environment variables
 dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
@@ -70,6 +72,113 @@ async function uploadImage(accessToken: string, filePath: string) {
     }
     return data.media_id;
 }
+
+// Upload inline image (returns URL, not media_id)
+async function uploadInlineImage(accessToken: string, imageUrl: string) {
+    const url = `https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token=${accessToken}`;
+
+    let imageBuffer: Buffer;
+    let filename: string = 'image.jpg';
+
+    // Handle local paths
+    if (!imageUrl.startsWith('http')) {
+        // Construct absolute path
+        // Check if it's already absolute or relative to public
+        let localPath = imageUrl;
+        if (imageUrl.startsWith('/')) {
+            localPath = path.join(process.cwd(), 'public', imageUrl);
+        } else {
+            localPath = path.join(process.cwd(), 'public', imageUrl); // Default assumption
+        }
+
+        if (fs.existsSync(localPath)) {
+            imageBuffer = fs.readFileSync(localPath);
+            filename = path.basename(localPath);
+        } else {
+            console.warn(`   ⚠️ Local image not found: ${localPath}`);
+            return imageUrl; // Return original if not found
+        }
+    } else {
+        // Handle remote URLs
+        try {
+            const res = await fetch(imageUrl);
+            if (!res.ok) throw new Error(`Failed to fetch image: ${res.statusText}`);
+            const arrayBuffer = await res.arrayBuffer();
+            imageBuffer = Buffer.from(arrayBuffer);
+            filename = path.basename(new URL(imageUrl).pathname) || 'image.jpg';
+        } catch (e) {
+            console.warn(`   ⚠️ Remote image fetch failed: ${imageUrl}`, e);
+            return imageUrl;
+        }
+    }
+
+    const form = new FormData();
+    // FormData requires a Blob-like object for files
+    const blob = new Blob([new Uint8Array(imageBuffer)]);
+    form.append('media', blob, filename);
+
+    const res = await fetch(url, {
+        method: 'POST',
+        body: form
+    });
+
+    const data = await res.json() as any;
+    if (data.errcode) {
+        console.error(`   ❌ Inline Image Upload Error: ${data.errmsg}`);
+        return imageUrl; // Return original on error
+    }
+    console.log(`   ✅ Inline Image Uploaded: ${data.url}`);
+    return data.url;
+}
+
+async function processContentForWeChat(rawHtml: string, accessToken: string) {
+    const $ = cheerio.load(rawHtml);
+
+    // 1. Process Images (Upload & Replace)
+    const imgTags = $('img').toArray();
+    for (const img of imgTags) {
+        const src = $(img).attr('src');
+        if (src) {
+            console.log(`   Processing Inline Image: ${src}`);
+            const wechatUrl = await uploadInlineImage(accessToken, src);
+            $(img).attr('src', wechatUrl);
+            // Remove any srcset or other attributes that might interfere
+            $(img).removeAttr('srcset');
+            $(img).removeAttr('sizes');
+            $(img).css('max-width', '100%');
+            $(img).css('height', 'auto');
+            $(img).css('display', 'block');
+            $(img).css('margin', '20px auto');
+        }
+    }
+
+    // 2. Process Tables (Styling)
+    $('table').css({
+        'border-collapse': 'collapse',
+        'width': '100%',
+        'margin-bottom': '20px',
+        'font-size': '14px',
+        'line-height': '1.5'
+    });
+
+    $('th').css({
+        'border': '1px solid #e0e0e0',
+        'padding': '8px 10px',
+        'background-color': '#f7f7f7',
+        'font-weight': '600',
+        'text-align': 'left',
+        'color': '#333'
+    });
+
+    $('td').css({
+        'border': '1px solid #e0e0e0',
+        'padding': '8px 10px',
+        'color': '#555'
+    });
+
+    return $.html();
+}
+
 
 // Convert Sanity Blocks to HTML
 function convertBlocksToHtml(blocks: any[]) {
@@ -127,7 +236,7 @@ function convertBlocksToHtml(blocks: any[]) {
 // Convert Raw Markdown to HTML (using remark)
 async function convertRawMarkdownToHtml(markdown: string) {
     // 1. Use remark to convert to HTML
-    const result = await remark().use(html).process(markdown);
+    const result = await remark().use(remarkGfm).use(html).process(markdown);
     let rawHtml = result.toString();
 
     // 2. Apply WeChat Styles (Inline Styles)
@@ -208,7 +317,10 @@ async function main() {
                         body: content, // Raw Markdown
                         image: data.image,
                         slug: file.replace('.md', ''),
-                        source: 'local'
+                        source: 'local',
+                        locale: data.locale,
+                        language: data.language,
+                        wechat_synced: data.wechat_synced || false
                     });
                 }
             }
@@ -240,6 +352,11 @@ async function main() {
             const isAI = post.title?.includes('AI') || post.title?.includes('智能体');
             const isSupplyChain = post.title?.includes('供应链');
             const isGreen = post.title?.includes('绿色');
+
+            if (post.wechat_synced) {
+                console.log(`Skipping Post: ${post.title} (Already synced)`);
+                continue;
+            }
 
             if (!isGlobalTrade && !isSEL && !isYiwu && !isAI && !isSupplyChain && !isGreen) {
                 console.log(`Skipping Post: ${post.title} (Not in allowed RSS/Topic list)`);
@@ -291,7 +408,11 @@ async function main() {
                 contentHtml = await convertRawMarkdownToHtml(post.body);
             }
 
-            // 3. Create Draft
+            // 3. ENHANCED PROCESSING: Upload inline images & fix tables
+            contentHtml = await processContentForWeChat(contentHtml, token);
+
+
+            // 4. Create Draft
             const safeTitle = (post.title || "No Title").substring(0, 64);
             const safeDigest = (post.description || "").substring(0, 120);
 
