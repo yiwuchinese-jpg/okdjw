@@ -277,11 +277,19 @@ async function convertRawMarkdownToHtml(markdown: string) {
         const mdPath = path.join(tmpDir, `temp_${sessionId}.md`);
         const htmlPath = path.join(tmpDir, `temp_${sessionId}.html`);
 
+        // Write a dummy config file to prevent md2wechat from hanging on interactive setup
+        const configPath = path.join(process.cwd(), 'md2wechat.yaml');
+        if (!fs.existsSync(configPath)) {
+            fs.writeFileSync(configPath, 'api:\n', 'utf-8');
+            console.log("   ✅ Created dummy md2wechat.yaml to bypass setup.");
+        }
+
         // Write the raw markdown
         fs.writeFileSync(mdPath, markdown, 'utf-8');
 
         // Execute md2wechat. We use API mode and elegant-blue theme for a professional look.
         execSync(`md2wechat convert "${mdPath}" -o "${htmlPath}" --mode api --theme elegant-blue`, { stdio: 'pipe' });
+
 
         const styledHtml = fs.readFileSync(htmlPath, 'utf-8');
         console.log("   ✅ Successfully applied md2wechat theme.");
