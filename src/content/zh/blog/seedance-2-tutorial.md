@@ -2,6 +2,7 @@
 title: "AI 生成视频小白教程：3分钟玩转即梦 Seedance 2.0 (附保姆级案例)"
 date: 2026-02-22
 author: "Justin"
+description: "还在觉得AI视频只会“鬼畜连环画”吗？快来试试即梦 Seedance 2.0！3分钟带你上手，稳定出图、自由运镜、精确表情，还有保姆级万能提示词结构，随手就能生成大片效果。"
 image: "/images/blog/seedance/demo-image.png"
 categories: ["AI 教程", "视频生成"]
 tags: ["Seedance 2.0", "即梦", "AI工具", "提示词"]
