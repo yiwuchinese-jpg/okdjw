@@ -176,6 +176,38 @@ async function processContentForWeChat(rawHtml: string, accessToken: string) {
         'color': '#555'
     });
 
+    // 3. Process Videos (Replace with call-to-action placeholder)
+    $('video').each((i, video) => {
+        $(video).replaceWith(`
+            <div style="background-color: #f5f7fa; padding: 24px 16px; text-align: center; border-radius: 8px; margin: 24px 0; border: 1px dashed #ced4da;">
+                <p style="color: #4a5568; font-size: 15px; font-weight: 600; margin: 0 0 8px 0;">🎥 【视频已折叠】</p>
+                <p style="color: #718096; font-size: 13px; margin: 0;">受限于微信排版，实操演示视频无法直接显示。<br/>请点击左下角<strong>“阅读原文”</strong>前往网站完整观看。</p>
+            </div>
+        `);
+    });
+
+    // 4. Process External Links (Replace with styled text)
+    let hasExternalLinks = false;
+    $('a').each((i, a) => {
+        const href = $(a).attr('href');
+        if (href && href.startsWith('http')) {
+            hasExternalLinks = true;
+            // WeChat strips non-whitelisted external <a> tags and destroys layout. 
+            // We convert them to highlighted spans.
+            const text = $(a).text();
+            $(a).replaceWith(`<span style="color: #007aff; border-bottom: 1px solid #007aff;">${text}</span>`);
+        }
+    });
+
+    if (hasExternalLinks) {
+        // Append a warning at the end of the article if there were links
+        $('body').append(`
+            <div style="margin-top: 30px; padding: 15px; background-color: #fff8e1; color: #b78103; font-size: 13px; text-align: center; border-radius: 6px;">
+                💡 <strong>温馨提示：</strong>文中包含的外部体验链接因微信限制无法直接点击，请点击文末<strong>“阅读原文”</strong>获取完整体验。
+            </div>
+        `);
+    }
+
     return $.html();
 }
 
