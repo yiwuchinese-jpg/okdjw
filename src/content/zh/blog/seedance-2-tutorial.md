@@ -6,6 +6,7 @@ image: "/images/blog/seedance/demo-image.png"
 categories: ["AI 教程", "视频生成"]
 tags: ["Seedance 2.0", "即梦", "AI工具", "提示词"]
 draft: false
+locale: "zh"
 ---
 
 听说最近 AI 视频生成又双叒叕进化了？没错，如果你还觉得 AI 视频只会“鬼畜连环画”，那你一定要试试**即梦（Jimeng）最新推出的 Seedance 2.0 模型**。
